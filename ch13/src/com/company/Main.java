@@ -33,7 +33,7 @@ public class Main {
         Scanner sc=new Scanner(System.in);
         System.out.println("Enter first Number : ");
         num1=sc.nextInt();
-        System.out.println("Enter first Number : ");
+        System.out.println("Enter second Number : ");
         num2=sc.nextInt();
         System.out.println("Select any one option  : \n" +
                 "1)Addition\n" +
