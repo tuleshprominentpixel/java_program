@@ -33,7 +33,7 @@ public class Main {
         Scanner sc=new Scanner(System.in);
         System.out.println("Enter first Number : ");
         num1=sc.nextInt();
-        System.out.println("Enter first Number : ");
+        System.out.println("Enter second Number : ");
         num2=sc.nextInt();
         System.out.println("Select any one option  : \n" +
                 "1)Addition\n" +
@@ -47,13 +47,13 @@ public class Main {
         Division Division = new Division();
         switch (sel){
             case 1:
-                System.out.println("addition"+addition.perform(num1,num2));
+                System.out.println("addition "+addition.perform(num1,num2));
                 break;
             case 2:
-                System.out.println("Subtraction"+Subtraction.perform(num1,num2));
+                System.out.println("Subtraction "+Subtraction.perform(num1,num2));
                 break;
             case 3:
-                System.out.println("Multiplication"+Multiplication.perform(num1,num2));
+                System.out.println("Multiplication "+Multiplication.perform(num1,num2));
                 break;
             case 4:
                 System.out.println("Division " +Division.perform(num1,num2));
