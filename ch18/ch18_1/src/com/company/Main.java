@@ -19,6 +19,7 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         int sal;
+        System.out.println("Please enter salary :");
         Scanner sc=new Scanner(System.in);
         sal=sc.nextInt();
         try {
