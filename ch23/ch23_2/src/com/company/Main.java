@@ -32,7 +32,8 @@ public class Main {
 
         File maindir = new File(maindirpath);
 
-        if (maindir.exists() && maindir.isDirectory()) {
+//        if (maindir.exists() && maindir.isDirectory())
+        {
 
             File arr[] = maindir.listFiles();
 

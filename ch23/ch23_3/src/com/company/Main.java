@@ -30,9 +30,10 @@ public class Main {
             System.out.println("File moved successfully");
         }*/
         String[] entries="\u0645 \u062E\u062F\u0627".split("#");
-        /*OutputStream os = new FileOutputStream("/home/pp-2/Desktop/java/j.csv");
+        OutputStream os = new FileOutputStream("/home/pp-2/Desktop/java/j.csv");
         os.write(239);
         os.write(187);
-        os.write(191);*/
+        os.write(191);
+
     }
 }
