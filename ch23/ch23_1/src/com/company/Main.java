@@ -48,7 +48,7 @@ public class Main {
             numOfCharacter+=line.length();
             String words[] = line.split("\\s+");
 
-            System.out.println("a1 "+words.length);
+//            System.out.println("a1 "+words.length);
             for(int i=0;i<words.length;i++){
 //                for (int j=0;j<words[0].length();j++)
                 if(words[i].length()<3){
@@ -72,6 +72,7 @@ public class Main {
 
             }
             numOfWord = numOfWord + words.length;
+            numOfWhitespace += numOfWord - 1;
         }
 
         /*while ((str=br1.readLine())!=null){
@@ -92,8 +93,8 @@ public class Main {
         System.out.println("Total number of characters = "+ numOfCharacter);
 
         System.out.println("Total number of whitespaces = "+ numOfWhitespace);
-        System.out.println("count = "+ count);
-        System.out.println("hm = "+ hm);
+//        System.out.println("count = "+ count);
+//        System.out.println("hm = "+ hm);
         System.out.println("wordLengthLessThanThree = "+ wordLengthLessThanThree);
 
         /*hm.forEach((key, value) -> {
@@ -125,6 +126,28 @@ public class Main {
 //        List<Integer> valueList = new ArrayList<> (hm.values());
 //        Collections.sort(valueList);
 
+        String userinput;
+        Scanner sc=new Scanner(System.in);
+        userinput=sc.nextLine();
+
+        int n = userinput.length();
+        int[] freq = new int[50000];
+
+        /*for (int i = 0; i < n; i++)
+            System.out.println("aa"+freq[userinput.charAt(i) - 'a']++);*/
+        for (int i = 0; i < n; i++) {
+
+            if (freq[userinput.charAt(i) - 'a'] != 0) {
+
+                System.out.print(userinput.charAt(i));
+                System.out.print("ss = "+freq[userinput.charAt(i) - 'a'] + " ");
+
+                freq[userinput.charAt(i) - 'a'] = 0;
+            }
+        }
+
+
+
         for(Character key: keySetArr){
 //            System.out.println(key);
 
@@ -149,7 +172,7 @@ public class Main {
         for (Map.Entry<Character, Integer> aa : list) {
             temp.put(aa.getKey(), aa.getValue());
         }
-        System.out.println("Sorting  : "+temp);
+//        System.out.println("Sorting  : "+temp);
         return temp;
     }
 

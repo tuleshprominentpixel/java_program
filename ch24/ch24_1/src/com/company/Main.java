@@ -1,5 +1,5 @@
 package com.company;
-interface interface1 <E>
+interface interface1 <T>
 {
 
 }
