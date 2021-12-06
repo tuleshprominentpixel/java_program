@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-class ProminentTrainee{
+class ProminentTrainee implements  Serializable{
     int TraineeId;
     String TraineeName;
     Date TraineeDOB;
@@ -198,14 +198,100 @@ public class Main {
                 hm.entrySet()) {
 
             // put key and value separated by a colon
-            bf.write(entry.getKey() + ":"
-                    + entry.getValue());
+            bf.write(entry.getKey() + ":"+ entry.getValue());
 
             // new line
             bf.newLine();
         }
 
         bf.flush();
+
+        /*-------------*/
+        /*FileOutputStream f = new FileOutputStream(new File("D:/prominent_pixel/git/a2.txt"));
+        ObjectOutputStream o = new ObjectOutputStream(f);
+
+        // Write objects to file
+        o.writeObject(p1);
+        o.writeObject(p2);
+
+        o.close();
+        f.close();*/
+
+        /*InputStream inputStream = new FileInputStream("D:/prominent_pixel/git/a3.txt");
+        OutputStream outputStream = new FileOutputStream("D:/prominent_pixel/git/a3.txt");
+
+        int byteRead;
+
+            while ((byteRead = inputStream.read()) != -1) {
+                outputStream.write(byteRead);
+            }
+        System.out.println("outputStream : "+outputStream);
+
+        FileInputStream fis = new FileInputStream(new File("D:/prominent_pixel/git/a3.txt"));
+
+    // read one byte at a time
+    int ch;
+    while ((ch = fis.read()) != -1) {
+        System.out.print((char) ch);
+    }
+     System.out.print("ff");
+    // close the reader
+    fis.close();*/
+        // create a writer
+        FileOutputStream fos = new FileOutputStream(new File("/home/pp-2/Desktop/java/b1.txt"));
+
+
+        ObjectOutputStream o = new ObjectOutputStream(fos);
+
+        // Write objects to file
+        o.writeObject(p1);
+        o.writeObject(p2);
+        o.writeObject(p3);
+        o.writeObject(p4);
+        o.writeObject(p5);
+
+
+
+
+        o.close();
+        fos.close();
+
+        FileInputStream fi = new FileInputStream(new File("/home/pp-2/Desktop/java/b1.txt"));
+        ObjectInputStream oi = new ObjectInputStream(fi);
+
+        // Read objects
+        ProminentTrainee pr1 = (ProminentTrainee) oi.readObject();
+        ProminentTrainee pr2 = (ProminentTrainee) oi.readObject();
+        ProminentTrainee pr3 = (ProminentTrainee) oi.readObject();
+        ProminentTrainee pr4 = (ProminentTrainee) oi.readObject();
+        ProminentTrainee pr5 = (ProminentTrainee) oi.readObject();
+
+
+        System.out.println(pr1.toString());
+        System.out.println(pr2.toString());
+
+        oi.close();
+        fi.close();
+
+    /*FileInputStream fis = new FileInputStream(new File("D:/prominent_pixel/git/a3.txt"));
+
+    // specify UTF_16 characer encoding
+    InputStreamReader reader = new InputStreamReader(fis, StandardCharsets.UTF_16);
+
+    // read one byte at a time
+    int ch;
+    while ((ch = reader.read()) != -1) {
+        System.out.print((char) ch);
+    }
+
+    // close the reader
+    reader.close();*/
+
+
+
+
+
+
 
 
     }

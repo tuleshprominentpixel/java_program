@@ -4,42 +4,34 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        int a[][]={{1,1,1},{2,2,2},{3,3,3}};
-        int b[][]={{4,4,4},{5,5,5},{6,6,6}};
-        int c[][]=new int[3][3];
+        /*------------int to double -------------*/
+        int num = 100;
+        System.out.println("The integer value: " + num);
 
-        System.out.println("First Array");
-        for(int i=0;i<a.length;i++){
+        double data = num;
+        long l = num;
+        float f = num;
+        System.out.println("The double value: " + data);
+        System.out.println("The long value: " + l);
+        System.out.println("The float value: " + f);
+        /*------double to integer------------*/
+        data=100.50;
+        System.out.println("The double(interger) value: " + data);
+        num = (int)data;
+        System.out.println("The integer(double to integer) value: " + num);
+        l = (long)data;
+        System.out.println("The integer(long to integer) value: " + l);
+        /*------------int to string--------------*/
+        num = 1500;
+        System.out.println("The integer(String) value is: " + num);
 
-            for(int j=0;j<a[0].length;j++){
-                System.out.print(a[i][j]+" ");
-            }
-            System.out.println("");
-        }
-
-        System.out.println("Second Array");
-        for(int i=0;i<b.length;i++){
-
-            for(int j=0;j<b[0].length;j++){
-                System.out.print(b[i][j]+" ");
-            }
-            System.out.println("");
-        }
-
-        System.out.println("Muliplication of Two array :");
-        for(int i=0;i<a.length;i++){
-
-            for(int j=0;j<a[0].length;j++){
-
-                c[i][j]=0;
-                for(int k=0;k<3;k++)
-                {
-                    c[i][j]+=a[i][k]*b[k][j];
-                }
-                System.out.print(c[i][j]+" ");
-            }
-            System.out.println();
-        }
-
+        String str1 = String.valueOf(num);
+        System.out.println("The string(int to string) value is: " + str1);
+        /*-----------String to int------------*/
+        str1="50";
+        System.out.println("The String(integer) value is: " + str1);
+        num = Integer.parseInt(str1);
+        System.out.println("The integer(String to int) value is: " + num);
+        /*-------------------------*/
     }
 }
