@@ -126,7 +126,7 @@ public class Main {
 
         Object element = ProminentTraineelist.get(3);
         ProminentTrainee el=(ProminentTrainee)element;
-        System.out.println("3nd index  trainee name: "+el.TraineeAge+" id : "+el.TraineeId+" date "+el.TraineeDOB);
+        System.out.println("3nd index  trainee name: "+el.TraineeName+" id : "+el.TraineeId+" date "+el.TraineeDOB);
 
 
         /*System.out.println("List Before: " + ProminentTraineelist);
@@ -269,6 +269,7 @@ public class Main {
 
         System.out.println(pr1.toString());
         System.out.println(pr2.toString());
+        System.out.println(pr3.toString());
 
         oi.close();
         fi.close();
