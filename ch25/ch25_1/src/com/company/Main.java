@@ -32,6 +32,12 @@ public class Main {
 
 
         System.out.println(list1);
+        Collections.swap(list1, 1, 2);
+
+        // display Array List after swap
+        System.out.println("After Swap the ArrayList");
+        System.out.println(list1);
+
         for (String list:list1){
             int countA= Collections.frequency(list1, list);
             if(countA>1)
