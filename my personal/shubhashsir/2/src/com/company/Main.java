@@ -56,8 +56,10 @@ public class Main {
 	// write your code here
         List<Student> l1=new ArrayList();
         List l2=new ArrayList();
+        List l3=new ArrayList();
         HashMap<String,Integer> m2=new HashMap<>();
-        HashMap<List<String>,String> m3=new HashMap<>();
+        HashMap<List<Student>,String> m3=new HashMap<>();
+        HashMap<String,List> m4=new HashMap<>();
 
         Student s1=new Student("a1","modi");
         Student s2=new Student("a2","modi");
@@ -139,20 +141,29 @@ public class Main {
             int count=0;
             Object s100= value.next();
             System.out.println(s100);
+            l3=new ArrayList<>();
 //            System.out.println("total in list : "+l1.stream().count());
             for (int i=0;i<l1.stream().count();i++){
 //                l1.get(i).getCollegeName();
-                if(l1.get(i).getCollegeName()==s100){
+
+                if(l1.get(i).getCollegeName()==(s100)){
                     System.out.println(l1.get(i).getStudentName());
                     l2.add(l1.get(i).getStudentName());
                     m2.put(l1.get(i).getCollegeName(),++count);
-                    m3.put(l1.get(),l1.get(i).getStudentName());
+//                    m3.put(l1,l1.get(i).getStudentName());
 //                    System.out.println(l1.contains("b4"));
-
-
+                    l3.add(l1.get(i).getStudentName());
+                    System.out.println(l3);
 //                    count++;
                 }
+
+//                m4.put((String) s100,l3);
             }
+            m4.put((String) s100,l3);
+            System.out.println("m4"+m4);
+//            l3.clear();
+//            m4.put((String) s100,l3);
+
 //            for (Object s : l1)
             /*for (Map.Entry<String,String> entry : m1.entrySet())
             {
@@ -173,8 +184,19 @@ public class Main {
 
         }
 
-        System.out.println(l2);
+//        System.out.println(l2);
         System.out.println(m2);
+//        System.out.println("m3" +m3);
+//        System.out.println("m4" +m4);
+//        System.out.println("l3" +l3);
+        for (Map.Entry<String,List> entry : m4.entrySet()) {
+                System.out.println("College : "+entry.getKey()+", student ="+entry.getValue());
+        }
+        System.out.println("-----------------");
+        for (Map.Entry<String,Integer> entry : m2.entrySet()) {
+            System.out.println(""+entry.getKey()+", Number of student : "+entry.getValue());
+        }
+
 
         /*Map<String,String> m1=new HashMap();
         for (Student stu : l1) {
