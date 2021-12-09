@@ -16,8 +16,10 @@ public class Main {
         arrayList.add(30);
         arrayList.add(600);
         arrayList.add(20);
+        arrayList.add(30);
 
-        HashSet<Integer> lhset= new HashSet<>(arrayList);
+
+        LinkedHashSet<Integer> lhset= new LinkedHashSet<>(arrayList);
 
         System.out.println("value in arraylist with unique");
         System.out.println(lhset);

@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
-
+//Given names and mobile numbers, assemble a phone book that maps friends' names to their
+//respective mobile numbers. You will then be given an unknown number of names to query
+//your phone book for. For each name queried, print the associated entry from your phone
+//book on a new line in the form name=mobileNumber; if an entry for name is not found, print
+//Not found instead.
     public static void main(String[] args) {
 	// write your code here
         String name;
@@ -17,26 +21,16 @@ public class Main {
         phonebook.put("Rohit",523456789);
 
         Scanner sc=new Scanner(System.in);
+        System.out.println("Enter name : ");
+
         name=sc.nextLine();
 
         if(phonebook.containsKey(name)){
             System.out.println(name+" = "+phonebook.get(name));
-
-//            System.out.println(phonebook.containsKey(name));
         }
         else {
             System.out.println("Not found ");
         }
-
-       /* phonebook.forEach((k,v)->
-        {
-            System.out.println("k "+k+" v :"+v+" name :"+name+ " expression :"+(k==name));
-            System.out.println(phonebook.containsValue(name));
-            if(((phonebook.containsKey(name))&&k==name)) {
-                System.out.println(k + " = " + v);
-            }
-        }
-        );*/
 
     }
 }
