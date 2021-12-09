@@ -41,7 +41,8 @@ public class Main {
     //List
     static List < Student > listOfStudent = new ArrayList();
     //Hashmap
-    static HashMap < String, String > studentOfCollegeHashmap = new HashMap < > ();
+    static HashMap < String, List<String> > studentOfCollegeHashmap = new HashMap < > ();
+    static HashMap < String, HashMap<String,String> > studentOfCollegeHashmapNew = new HashMap < > ();
     static HashMap < String, Integer > stuentCountHashmap = new HashMap < > ();
 
     public static void main(String[] args) {
@@ -98,26 +99,24 @@ public class Main {
         return stuentCountHashmap;
     }
     //excecise -2
-    public static HashMap< String, String > getStudentsOfCollege(List<Student> studentList) {
-        /*for (int i = 0; i < studentList.stream().count(); i++) {
-            if ((!studentOfCollegeHashmap.containsKey(studentList.get(i).getCollegeName()))) {
-                studentOfCollegeHashmap.put(studentList.get(i).getCollegeName(), studentList.get(i).getStudentName());
-
-            } else {
-                var tempStoreStudentName = studentOfCollegeHashmap.get(studentList.get(i).getCollegeName());
-                tempStoreStudentName += " , " + studentList.get(i).getStudentName();
-                studentOfCollegeHashmap.put(studentList.get(i).getCollegeName(), tempStoreStudentName);
-            }
-        }*/
+    public static HashMap< String, List<String> > getStudentsOfCollege(List<Student> studentList) {
+        List<String> temp;
         for(Student studList:studentList)
         {
             if ((!studentOfCollegeHashmap.containsKey(studList.getCollegeName()))) {
-                studentOfCollegeHashmap.put(studList.getCollegeName(), studList.getStudentName());
+                temp=new ArrayList<>();
+                temp.add(studList.getStudentName());
+
+                studentOfCollegeHashmap.put(studList.getCollegeName(), temp);
 
             } else {
-                var tempStoreStudentName = studentOfCollegeHashmap.get(studList.getCollegeName());
-                tempStoreStudentName += " , " + studList.getStudentName();
-                studentOfCollegeHashmap.put(studList.getCollegeName(), tempStoreStudentName);
+                for (Map.Entry<String, List<String>> entry : studentOfCollegeHashmap.entrySet()) {
+                    if(entry.getKey()==studList.getCollegeName()){
+                        temp=studentOfCollegeHashmap.get(entry.getKey());
+                        temp.add(studList.getStudentName());
+                        studentOfCollegeHashmap.put(studList.getCollegeName(), temp);
+                    }
+                }
             }
         }
         return studentOfCollegeHashmap;
