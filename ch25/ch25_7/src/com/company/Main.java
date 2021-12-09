@@ -6,6 +6,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 class ProminentTrainee implements Serializable {
@@ -13,7 +14,7 @@ class ProminentTrainee implements Serializable {
     String TraineeName;
     Date TraineeDOB;
     int TraineeAge;
-    SimpleDateFormat dt = new SimpleDateFormat("yyyyy-mm-dd");
+
     ProminentTrainee(int id,String name,Date dob,int age){
         this.TraineeId=id;
         this.TraineeName=name;
@@ -33,13 +34,6 @@ class ProminentTrainee implements Serializable {
         return TraineeDOB;
     }
 
-//    @Override public String toString() {
-//        return ("ProminentTrainee[ "+"Name:"+this.TraineeName+
-//                " Date: "+ this.TraineeDOB +
-//                " Age: "+ this.TraineeAge+"]");
-//    }
-
-
     @Override
     public String toString() {
         return "ProminentTrainee{" +
@@ -50,20 +44,51 @@ class ProminentTrainee implements Serializable {
                 '}';
     }
 }
-// Comparator to sort a list
-class StudentComp implements Comparator<ProminentTrainee> {
-    @Override public int compare(ProminentTrainee s1, ProminentTrainee s2)
+
+class IdComparator implements Comparator<ProminentTrainee> {
+
+    // override the compare() method
+    public int compare(ProminentTrainee s1, ProminentTrainee s2)
     {
-        if (s1.getName() == s2.getName()) {
+        if (s1.TraineeId == s2.TraineeId)
             return 0;
-        }
-        else if (s1.getName().equals(s2.getName())) {
+        else if (s1.TraineeId > s2.TraineeId)
             return 1;
-        }
-        /*else if (s1.getSid() < s2.getSid()) {
+        else
             return -1;
-        }*/
-        return -1;
+    }
+}
+
+// creates the comparator for comparing name
+class NameComparator implements Comparator<ProminentTrainee> {
+
+    // override the compare() method
+    public int compare(ProminentTrainee p1, ProminentTrainee p2)
+    {
+        return p1.getName().compareTo(p2.getName());
+    }
+}
+// creates the comparator for comparing name
+class DateComparator implements Comparator<ProminentTrainee> {
+
+    // override the compare() method
+    public int compare(ProminentTrainee p1, ProminentTrainee p2)
+    {
+        return p1.getDob().compareTo(p2.getDob());
+    }
+}
+// creates the comparator for comparing name
+class AgeComparator implements Comparator<ProminentTrainee> {
+
+    // override the compare() method
+    public int compare(ProminentTrainee p1, ProminentTrainee p2)
+    {
+        if (p1.getAge() == p2.getAge())
+            return 0;
+        else if (p1.getAge() > p2.getAge())
+            return 1;
+        else
+            return -1;
     }
 }
 
@@ -72,7 +97,7 @@ public class Main {
     static List<ProminentTrainee> persons = new ArrayList<ProminentTrainee>();
     public static void main(String[] args) throws Exception {
 	// write your code here
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
         ProminentTrainee p1=new ProminentTrainee(1,"Tulesh",sdf.parse("17-10-2001"),15);
         ProminentTrainee p2=new ProminentTrainee(2,"Jenish",sdf.parse("17-11-2001"),21);
@@ -152,10 +177,6 @@ public class Main {
         /*----------Convert list to set and count total element of set--->*/
         System.out.println("--------------------------");
         System.out.println("Convert list to set and count total element of set");
-        /*List<ProminentTrainee> l1=ProminentTraineelist.stream()
-                .filter(n -> n.TraineeId!=-1)
-                .collect(Collectors.toList());
-        System.out.println("lllllll"+l1.size());*/
 
         Set<ProminentTrainee> hSet = new HashSet<ProminentTrainee>();
         for (ProminentTrainee x : ProminentTraineelist)
@@ -187,6 +208,37 @@ public class Main {
         ProminentTraineelist.sort((ProminentTrainee p11, ProminentTrainee p12)->p11.getDob().compareTo(p12.getDob()));
         ProminentTraineelist.forEach((s)->System.out.println("Id : "+s.TraineeId+" Name : "+s.TraineeName+" Age : "+s.TraineeAge+" Date : "+s.TraineeDOB));
 
+        System.out.println("----------------------");
+        System.out.println("NameComparator with functional  interface");
+        /*Comparator sortingByName = new Comparator() {
+            @Override
+            public int compare(ProminentTrainee s1, ProminentTrainee s2) {
+                return s1.getName().compareTo(s2.getName());
+            }
+        };*/
+        Collections.sort(ProminentTraineelist, new NameComparator());
+        for (ProminentTrainee Trainee : ProminentTraineelist) {
+            System.out.println(" Name : "+Trainee.getName() + " Id :" + Trainee.getId()
+                    + "  Date : " + Trainee.getDob());
+        }
+        System.out.println("Compare by Id with functional  interface");
+        Collections.sort(ProminentTraineelist, new IdComparator());
+        for (ProminentTrainee Trainee : ProminentTraineelist) {
+            System.out.println("Id : "+Trainee.getId() + " Name : "+ Trainee.getName()
+                    + " Date : " + Trainee.getDob());
+        }
+        System.out.println("Compare by AgeComparator with functional  interface");
+        Collections.sort(ProminentTraineelist, new AgeComparator());
+        for (ProminentTrainee Trainee : ProminentTraineelist) {
+            System.out.println("Id : "+Trainee.getId() + " Name : "+ Trainee.getName()
+                    + " Date : " + Trainee.getDob()+" Age : "+Trainee.getAge());
+        }
+        System.out.println("Compare by Date with functional  interface");
+        Collections.sort(ProminentTraineelist, new DateComparator());
+        for (ProminentTrainee Trainee : ProminentTraineelist) {
+            System.out.println("Id : "+Trainee.getId() + " Name : "+ Trainee.getName()
+                    + " Date : " + Trainee.getDob()+" Age : "+Trainee.getAge());
+        }
 
         /*-------- Convert list to map using lambda expression.----------*/
         System.out.println("--------------------------");
@@ -197,241 +249,47 @@ public class Main {
         }
         System.out.println("Map  : " + prominentTraineeHashmap);
 
-        /*---Write all the records into plain text files. Record separator should be new line and field separator tab.-*/
         System.out.println("--------------------------");
         System.out.println("Write all the records into plain text files. Record separator should be new line and field separator tab");
-        /*File file = new File("/home/pp-2/Desktop/java/a1.txt");
-        BufferedWriter bf = null;
-        bf = new BufferedWriter(new FileWriter(file));
 
-        for (HashMap.Entry<Integer, ProminentTrainee> entry :
-                prominentTraineeHashmap.entrySet()) {
-            bf.write(entry.getKey() + ":"+ entry.getValue());
-            bf.newLine();
-        }
-        bf.flush();*/
-        /*File file = new File("/home/pp-2/Desktop/java/a11.txt");
-        BufferedWriter bf = null;
-        bf = new BufferedWriter(new FileWriter(file));
-
-        for (HashMap.Entry<Integer, ProminentTrainee> entry :
-                prominentTraineeHashmap.entrySet()) {
-            bf.write(entry.getKey() + ":"+ entry.getValue());
-            bf.newLine();
-        }
-        bf.flush();*/
-
-
-        /*FileWriter writer = new FileWriter("/home/pp-2/Desktop/java/a11.txt");
-        for(ProminentTrainee str: ProminentTraineelist) {
-            writer.write(str + System.lineSeparator()+"aa");
-        }*/
-
-        /*FileOutputStream fos1 = new FileOutputStream("/home/pp-2/Desktop/java/a11.txt");
-        ObjectOutputStream oos = new ObjectOutputStream(fos1);
-        oos.writeObject(ProminentTraineelist); // write MenuArray to ObjectOutputStream
-        oos.close();
-        Scanner s = new Scanner(new File("/home/pp-2/Desktop/java/a1.txt"));
-        ArrayList<String> list = new ArrayList<String>();
-        while (s.hasNext()){
-//            System.out.println("okkk");
-            list.add(s.next());
-        }
-        System.out.println("List : "+list);
-        s.close();*/
-
-        FileWriter writer = new FileWriter("/home/pp-2/Desktop/java/a11.txt");
-        int size = ProminentTraineelist.size();
-        for (int i=0;i<size;i++) {
-            String str = ProminentTraineelist.get(i).toString();
-            writer.write(str);
-            if(i < size-1)//This prevent creating a blank like at the end of the file**
-                writer.write("\n");
-        }
-        writer.close();
-
-        System.out.println("******************************************");
-//        Scanner s = new Scanner(new File("/home/pp-2/Desktop/java/a11.txt")).useDelimiter("\\s*-\\s*");
-        /*ArrayList<ProminentTrainee> arrayList = new ArrayList<>();
-        try (Scanner s = new Scanner(new File("/home/pp-2/Desktop/java/a11.txt")).useDelimiter("\\,")) {
-            // \\s* in regular expressions means "any number or whitespaces".
-            // We could've said simply useDelimiter("-") and Scanner would have
-            // included the whitespaces as part of the data it extracted.
-            var b="";
-            while (s.hasNext()) {
-                var a=s.nextLine();
-                b+=a;
-//                ProminentTrainee o=(ProminentTrainee) a;
-                System.out.println("aa value : "+a);
-//                JSONArray array = new JSONArray(a);
-//                System.out.println("Json : "+array);
-//                arrayList.add(a);
-//                System.out.println("aa "+a.);
-            }
-            System.out.println("b is : "+b);
-        }
-        catch (FileNotFoundException e) {
-            // Handle the potential exception
-        }*/
-        /*try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SER_FILE, true));) {
-
-            oos.writeObject(ProminentTraineelist);
-            System.out.println("Saving '" + ProminentTraineelist.size() + "' Object to Array");
-            System.out.println("persons.size() = " + ProminentTraineelist.size());
-            System.out.println("savePersons() = OK");
-
-        } catch (Exception ex) {
-            System.out.println("Saving ERROR: " + ex.getMessage());
-        }*/
-
-        /*binary file
-        FileInputStream readData = new FileInputStream("/home/pp-2/Desktop/java/a12.txt");
-        ObjectInputStream readStream = new ObjectInputStream(readData);
-
-        ArrayList<ProminentTrainee> people2 = (ArrayList<ProminentTrainee>) readStream.readObject();
-        readStream.close();
-        System.out.println(people2.stream().count());
-//        for (ProminentTrainee pp1:people2){
-//            System.out.println("pp " +people2);
-//        }
-        for (int i=0;i<people2.stream().count();i++){
-            System.out.println(people2.get(i).TraineeName);
-        }*/
-//        FileOutputStream filewr=new FileOutputStream("/home/pp-2/Desktop/java/a13.txt");
-
-        /*-----------file original a13.txt-------*/
-        /*FileWriter filewr=new FileWriter("/home/pp-2/Desktop/java/a13.txt");
+        FileWriter filewr=new FileWriter("/home/pp-2/Desktop/java/a14.txt");
         for (int i=0;i<ProminentTraineelist.stream().count();i++){
-            filewr.write(ProminentTraineelist.get(i).TraineeId+"\t"+ProminentTraineelist.get(i).TraineeName+"\t"+ProminentTraineelist.get(i).TraineeDOB+"\t"+ProminentTraineelist.get(i).TraineeAge);
-            filewr.write("\n");
-            System.out.println(ProminentTraineelist.get(i).TraineeName);
+            filewr.write("{\"id\":\""+ProminentTraineelist.get(i).TraineeId+"\",\t\"name\":\""+ProminentTraineelist.get(i).TraineeName+"\",\t\"date\":\""+ProminentTraineelist.get(i).TraineeDOB+"\",\t\"age\":\""+ProminentTraineelist.get(i).TraineeAge);
+            filewr.write("\"},\n");
         }
-        filewr.close();*/
-        /*FileWriter filewr=new FileWriter("/home/pp-2/Desktop/java/a13.txt");
-
-        for (int i=0;i<ProminentTraineelist.stream().count();i++){
-            filewr.write("{");
-            filewr.write("\"id,\":"+ProminentTraineelist.get(i).TraineeId+"\t,\"name\":"+ProminentTraineelist.get(i).TraineeName+"\t,\"date\":"+ProminentTraineelist.get(i).TraineeDOB+"\t,\"age\":"+ProminentTraineelist.get(i).TraineeAge);
-            filewr.write("}");
-            filewr.write("\n");
-            System.out.println(ProminentTraineelist.get(i).TraineeName);
-        }
-        filewr.close();*/
-
+        filewr.close();
         List<ProminentTrainee> newProminentTraineeList=new ArrayList<>();
-        FileReader fr=new FileReader("/home/pp-2/Desktop/java/a13.txt");
-        /*for (int i=0;i<ProminentTraineelist.stream().count();i++){
 
-//            ProminentTrainee tempp1=new ProminentTrainee();
-        }*/
-        BufferedReader br= new BufferedReader(new FileReader("/home/pp-2/Desktop/java/a13.txt"));
-
-        // Declaring a string variable
-        String st;
-        // Consition holds true till
-        // there is character in a string
-        while ((st = br.readLine()) != null) {
-//            System.out.println("br == "+st.toString());
-            String words[] = st.split(" ");
-//            System.out.println("Words : "+words[0].toString());
-            br.lines().toString();
-            // Print the string
-//            System.out.println(br.lines());
-        }
-
-//        FileInputStream fis1=new FileInputStream("/home/pp-2/Desktop/java/a13.txt");
-//        System.out.println(fis1.read());
-        //[{"id":"4"	,"name":"ABC"	,"Date"="Tue Jul 28 00:00:00 IST 22"	,"age"="17"}]
-        BufferedReader reader = new BufferedReader(new FileReader("/home/pp-2/Desktop/java/a13.txt"));
-        StringBuilder stringBuilder = new StringBuilder();
+        BufferedReader reader = new BufferedReader(new FileReader("/home/pp-2/Desktop/java/a14.txt"));
         String line = null;
-        String ls = System.getProperty("\t");
         while ((line = reader.readLine()) != null) {
-            String s1=line;
-//            String s1="[{"+line+"}]";
-            System.out.println("Line  : "+s1);
+            JSONObject json = new JSONObject(line);
 
-            JSONObject json = new JSONObject(s1);
-
-            System.out.println(json.toString());
-            int id = (int) json.get("id");
+            String tempid = (String) json.get("id");
             String name = (String) json.get("name");
-            String date = (String) json.get("date");
-            int age = (int) json.get("age");
-            System.out.println("id : "+id);
-            System.out.println("name : "+name);
+            String tempdate = (String) json.get("date");
+            String tempage = (String) json.get("age");
 
-            ProminentTrainee pp1=new ProminentTrainee(id,name,sdf.parse("17-10-2001"),age);
+            int id=Integer.parseInt(tempid);
+            int age=Integer.parseInt(tempage);
+            Date date1=new SimpleDateFormat("E MMM dd HH:mm:ss Z yy").parse(tempdate);
 
-            newProminentTraineeList.add(pp1);
+            ProminentTrainee tempProminentObject=new ProminentTrainee(id,name,(date1),age);
 
-            stringBuilder.append(line);
-            stringBuilder.append(ls);
+            newProminentTraineeList.add(tempProminentObject);
+
         }
-// delete the last new line separator
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         reader.close();
-
-        String content = stringBuilder.toString();
-
-//        System.out.println("Arrylist : "+arrayList);
-        System.out.println("---------------------------------");
-
-        /*Read file in to list
-        BufferedReader bufReader = new BufferedReader(new FileReader("/home/pp-2/Desktop/java/a11.txt"));
-        ArrayList<String> listOfLines = new ArrayList<>();
-        String line = bufReader.readLine();
-        while (line != null)
-        {
-            listOfLines.add(line);
-            line = bufReader.readLine();
+        for (ProminentTrainee pt1:newProminentTraineeList){
+            System.out.print(" Id : "+pt1.TraineeId);
+            System.out.print(" Name : "+pt1.TraineeName);
+            System.out.println(" Age : "+pt1.TraineeDOB);
         }
-        System.out.println("List Of lines : "+listOfLines.get(1));
-        bufReader.close();
 
-        listOfLines.forEach((e) -> {
-
-            System.out.println(" e "+e);
-        });*/
-
-
-        /*-------------*/
-        /*FileOutputStream f = new FileOutputStream(new File("D:/prominent_pixel/git/a2.txt"));
-        ObjectOutputStream o = new ObjectOutputStream(f);
-
-        // Write objects to file
-        o.writeObject(p1);
-        o.writeObject(p2);
-
-        o.close();
-        f.close();*/
-
-        /*InputStream inputStream = new FileInputStream("D:/prominent_pixel/git/a3.txt");
-        OutputStream outputStream = new FileOutputStream("D:/prominent_pixel/git/a3.txt");
-
-        int byteRead;
-
-            while ((byteRead = inputStream.read()) != -1) {
-                outputStream.write(byteRead);
-            }
-        System.out.println("outputStream : "+outputStream);
-
-        FileInputStream fis = new FileInputStream(new File("D:/prominent_pixel/git/a3.txt"));
-
-    // read one byte at a time
-    int ch;
-    while ((ch = fis.read()) != -1) {
-        System.out.print((char) ch);
-    }
-     System.out.print("ff");
-    // close the reader
-    fis.close();*/
-        // create a writer
-
+        System.out.println("---------------------------------");
+        System.out.println("Write all the records into binary files and read it back to list.");
 
         FileOutputStream fos = new FileOutputStream(new File("/home/pp-2/Desktop/java/b1.txt"));
-
-
         ObjectOutputStream o = new ObjectOutputStream(fos);
 
         // Write objects to file
@@ -440,9 +298,6 @@ public class Main {
         o.writeObject(p3);
         o.writeObject(p4);
         o.writeObject(p5);
-
-
-
 
         o.close();
         fos.close();
@@ -457,34 +312,21 @@ public class Main {
         ProminentTrainee pr4 = (ProminentTrainee) oi.readObject();
         ProminentTrainee pr5 = (ProminentTrainee) oi.readObject();
 
+        ArrayList<ProminentTrainee> tempProminentTraineelist=new ArrayList();
 
-        System.out.println(pr1.toString());
-        System.out.println(pr2.toString());
-        System.out.println(pr3.toString());
+        tempProminentTraineelist.add(pr1);
+        tempProminentTraineelist.add(pr2);
+        tempProminentTraineelist.add(pr3);
+        tempProminentTraineelist.add(pr4);
+        tempProminentTraineelist.add(pr5);
 
         oi.close();
         fi.close();
 
-    /*FileInputStream fis = new FileInputStream(new File("D:/prominent_pixel/git/a3.txt"));
-
-    // specify UTF_16 characer encoding
-    InputStreamReader reader = new InputStreamReader(fis, StandardCharsets.UTF_16);
-
-    // read one byte at a time
-    int ch;
-    while ((ch = reader.read()) != -1) {
-        System.out.print((char) ch);
-    }
-
-    // close the reader
-    reader.close();*/
-
-
-
-
-
-
-
-
+        for (ProminentTrainee pt1:tempProminentTraineelist){
+            System.out.print(" Id : "+pt1.TraineeId);
+            System.out.print(" Name : "+pt1.TraineeName);
+            System.out.println(" Age : "+pt1.TraineeDOB);
+        }
     }
 }
