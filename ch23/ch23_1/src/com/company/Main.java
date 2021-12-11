@@ -2,217 +2,195 @@ package com.company;
 
 import java.io.File;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.List;
 import java.util.*;
 import java.lang.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
 	// write your code here
-        File f=new File("/home/pp-2/Desktop/java/file1.txt");
-        /*File list[]=f.listFiles();
-        for(File x:list){
-            if(x.isDirectory()){
+        int numOfWord=0,numOfNumbers=0,uniqueWord=0,uniqueNumber=0;
+        int numOfCharacter=0;
+        int numOfWhitespace=0,wordLengthLessThanThree=0;
+        String oneLineOfFile;
+        String allLineOfFile="";
 
-            }
-        }*/
+        HashMap<String, Integer> uniqueNumberHashmap = new HashMap<>();
+        HashMap<String, Integer> uniqueWordHashmap = new HashMap<>();
+        HashMap<Integer, Integer> wordLengthCount = new HashMap<>();
+
+        File f=new File("/home/pp-2/Desktop/java/file1.txt");
+
         FileInputStream file1=new FileInputStream(f);
         InputStreamReader isr1=new InputStreamReader(file1);
         BufferedReader br1=new BufferedReader(isr1);
 
-        InputStream inputStream = new FileInputStream("/home/pp-2/Desktop/java/file1.txt");
-        int numOfWord=0;
-        int numOfCharacter=0;
-        int numOfWhitespace=0,wordLengthLessThanThree=0;
-        String str,line;
-        Array arr1[];
-        int previousvalue=0;
-        int previouskey=0;
 
+        HashMap<Character, Integer> hashMap1 = new HashMap<>();
 
-        int byteRead,count=0;
-        HashMap<Character, Integer> hm = new HashMap<Character, Integer>();
-        List<String> values = new ArrayList<String>();
+        while((oneLineOfFile = br1.readLine()) != null) {
+            oneLineOfFile=oneLineOfFile.replace(".","");
 
+            numOfCharacter+=oneLineOfFile.length();
+            String words[] = oneLineOfFile.split("\\s+");
 
-        /*while ((byteRead = inputStream.read()) != -1) {
-            System.out.print(((char)byteRead));
-            numOfCharacter+=1;
-        }*/
+            Pattern numberPattern = Pattern.compile("[1-9]+");
+            Matcher matchNumberPattern = numberPattern.matcher(oneLineOfFile);
 
-        while((line = br1.readLine()) != null) {
-            //Splits each line into words
-//            String words[] = line.split(" ");
-            numOfCharacter+=line.length();
-            String words[] = line.split("\\s+");
+            while (matchNumberPattern.find())
+            {
+                String word = matchNumberPattern.group();
+                if(!uniqueNumberHashmap.containsKey(word))
+                    uniqueNumberHashmap.put(word, 1);
+                else
+                    uniqueNumberHashmap.put(word, uniqueNumberHashmap.get(word) + 1);
+            }
 
-//            System.out.println("a1 "+words.length);
+            // Extracting words from string
+            Pattern p = Pattern.compile("[a-zA-Z]+");
+
+            allLineOfFile+=oneLineOfFile+" \n ";
+            Matcher m = p.matcher(allLineOfFile);
+
+            while (m.find())
+            {
+                String word = m.group();
+                if(!uniqueWordHashmap.containsKey(word))
+                    uniqueWordHashmap.put(word, 1);
+                else
+                    uniqueWordHashmap.put(word, uniqueWordHashmap.get(word) + 1);
+            }
+
+            /*-----------------------------------*/
+
             for(int i=0;i<words.length;i++){
-//                for (int j=0;j<words[0].length();j++)
+                //Filter words which length is less than 3.
                 if(words[i].length()<3){
-//                    System.out.println(""+words[i]);
                     wordLengthLessThanThree++;
+                }
+                try {
+                    Integer.parseInt(words[i]);
+                    numOfNumbers+=1;
+
+                } catch (NumberFormatException e) {
+                    //Print word length wise unique count
+                    int wordLength=words[i].length();
+                    if(!wordLengthCount.containsKey(wordLength)){
+                        wordLengthCount.put(wordLength, 1);
+                        System.out.println("-----------0+"+wordLength);
+
+                    }else {
+                        System.out.println("key val "+wordLengthCount.get(wordLength));
+                        wordLengthCount.put(wordLength,wordLengthCount.get(wordLength)+1);
+                    }
+                    numOfWord += 1;
                 }
             }
 
-            //Counts each word
-//            System.out.println(words[8]);
 
             for (String x:words){
 
-                Character h1= x.charAt(0);
-//                System.out.println(x);
-                if(!hm.containsKey(h1)){
-                    hm.put(h1, 1);
+                Character characterOne= x.charAt(0);
+                if(!hashMap1.containsKey(characterOne)){
+                    hashMap1.put(characterOne, 1);
                 }else {
-                    hm.put(h1,hm.get(h1)+1);
+                    hashMap1.put(characterOne,hashMap1.get(characterOne)+1);
                 }
 
+
             }
-            numOfWord = numOfWord + words.length;
             numOfWhitespace += numOfWord - 1;
         }
-
-        /*while ((str=br1.readLine())!=null){
-            System.out.println(str);
-            numOfCharacter+=str.length();
-            String words[] = str.split("\\s+");
-            for(String x:words){
-//                System.out.println("word : "+x);
-
+        int s=1;
+        for (Map.Entry<String,Integer> entry : uniqueWordHashmap.entrySet()){
+            if(entry.getValue()==1){
+                uniqueWord+=1;
             }
+        }
+        for (Map.Entry<String,Integer> entry : uniqueNumberHashmap.entrySet()){
+            if(entry.getValue()==1){
+                uniqueNumber+=1;
+            }
+        }
+        //Print word length wise unique count
+        for (Map.Entry<Integer,Integer> entry : wordLengthCount.entrySet()){
+            System.out.println("length of word = "+entry.getKey()+" count = "+entry.getValue());
+        }
 
-            numOfWord+=words.length;
 
-            numOfWhitespace += numOfWord - 1;
-        }*/
         System.out.println("Total word count = "+ numOfWord);
+        System.out.println("Total Numbers count = "+ numOfNumbers);
+        System.out.println("uniquqe Numbers count = "+ uniqueNumber);
+        System.out.println("uniquqe Word count = "+ uniqueWord);
 
         System.out.println("Total number of characters = "+ numOfCharacter);
-
         System.out.println("Total number of whitespaces = "+ numOfWhitespace);
-//        System.out.println("count = "+ count);
-//        System.out.println("hm = "+ hm);
         System.out.println("wordLengthLessThanThree = "+ wordLengthLessThanThree);
 
-        /*hm.forEach((key, value) -> {
+        System.out.println(hashMap1.keySet());
 
-            if (value > 1) {
-                System.out.println(("key:"+key+" value: "+value));
-            }
-
-
-        });*/
-        System.out.println(hm.keySet());
-        Set<Character> keySetArr = hm.keySet();
         System.out.println("After sorting ascending order......");
 
-            HashMap<Character, Integer> hm1 =sortByValue(hm);
-        HashMap<Character, Integer> hm10 = new HashMap<Character, Integer>();
-        for (Map.Entry<Character, Integer> en : hm1.entrySet()) {
-            System.out.println("Key = " + en.getKey() +
-                    ", Value = " + en.getValue());
-//            hm10.put(en.getKey(),en.getValue());
-//            System.out.println(hm10);
-            if(previousvalue<en.getValue()){
-                previousvalue=en.getValue();
-                previouskey=en.getKey();
-            }
+        HashMap<Character, Integer> ascendingOrderHashmap =sortByValue(hashMap1);
+        HashMap<Character, Integer> descendingOrderHashmap = sortByValue1(hashMap1);
 
-        }
-        System.out.println(previousvalue+" "+(char)previouskey);
-//        System.out.println(hm1);
-
-        /*-------------------*/
-        /*System.out.println("New");
-        System.out.println(hm10);
-        LinkedHashMap<Character,String> reverseMap = new LinkedHashMap<Character,String>();*/
-
-//        System.out.println(hm10.lastEntry()+"last");
-        /*NavigableSet<Integer> keySet = hm10.navigableKeySet();
-        Iterator<Integer> iterator = keySet.descendingIterator();
-        Integer i1;
-        while(iterator.hasNext())
-        {
-            i1 = iterator.next();
-            reverseMap.put(i1,hm10.get(i1));
-        }
-        System.out.println(reverseMap);*/
-
-
-        /*HashMap<Character, Integer> hm2 =sortByValue1(hm);
-
-        for (Map.Entry<Character, Integer> en : hm2.entrySet()) {
-            System.out.println("Key = " + en.getKey() +
-                    ", Value = " + en.getValue());
-            if(previousvalue>en.getValue()){
-                previousvalue=en.getValue();
-                previouskey=en.getKey();
-            }
-
-        }*/
-
-//        List<Integer> valueList = new ArrayList<> (hm.values());
-//        Collections.sort(valueList);
-/*------------------------*/
-        /*String userinput;
-        Scanner sc=new Scanner(System.in);
-        userinput=sc.nextLine();
-
-        int n = userinput.length();
-        int[] freq = new int[50000];
-
-        for (int i = 0; i < n; i++)
-            System.out.println("aa"+freq[userinput.charAt(i) - 'a']++);
-        for (int i = 0; i < n; i++) {
-
-            if (freq[userinput.charAt(i) - 'a'] != 0) {
-
-                System.out.print(userinput.charAt(i));
-                System.out.print("ss = "+freq[userinput.charAt(i) - 'a'] + " ");
-
-                freq[userinput.charAt(i) - 'a'] = 0;
-            }
+        for (Map.Entry<Character, Integer> en : ascendingOrderHashmap.entrySet()) {
+            System.out.println("Key = " + en.getKey() + ", Value = " + en.getValue());
         }
 
+        System.out.println("After sorting decending order......");
+        for (Map.Entry<Character, Integer> en : descendingOrderHashmap.entrySet()) {
+            System.out.println("Key = " + en.getKey() +", Value = " + en.getValue());
+        }
 
+        System.out.println("Print top N characters which have more words");
+        for (Map.Entry<Character, Integer> en : descendingOrderHashmap.entrySet()) {
+            if(en.getValue()>2)
+                System.out.println("Key = " + en.getKey() +", Value = " + en.getValue());
 
-        for(Character key: keySetArr){
-            System.out.println(key);
+        }
 
-        }*/
-        /*--------------------*/
-        String s1;
+        String reverseWordResult = Arrays.asList(allLineOfFile.split(" "))
+                .stream()
+                .map(oneWord -> new StringBuilder(oneWord).reverse())
+                .collect(Collectors.joining(" "));
+
+        System.out.println(reverseWordResult);
+        printCharacterWithFreq(allLineOfFile);
+        System.out.println("reverseWordResult");
+        String userInput;
         Scanner sc1 = new Scanner(System.in);
-//            System.out.println();
-        s1=sc1.nextLine();
+        System.out.println("Find word : ");
+        userInput=sc1.nextLine();
         try {
-            List<String> list = new ArrayList<String>();
-            int totalWords = 0;
-            int uniqueWords = 0;
+            List<String> wordList = new ArrayList<>();
 
-            File fr = new File("/home/pp-2/Desktop/java/file1.txt");
-            Scanner sc = new Scanner(fr);
-
+            File file = new File("/home/pp-2/Desktop/java/file1.txt");
+            Scanner sc = new Scanner(file);
 
             while (sc.hasNext()) {
                 String words = sc.next();
                 String[] space = words.split(" ");
                 for (int i = 0; i < space.length; i++) {
-//                     System.out.println("list : "+space[i]+" s1 "+s1);
-                    if(s1.equals(space[i])) {
-                        list.add(space[i]);
-//                        System.out.println("okkkkkkkkk");
+                    if(userInput.equals(space[i])) {
+                        wordList.add(space[i]);
                     }
                 }
-                totalWords++;
             }
             System.out.println("Words with their frequency..");
-            Set<String> uniqueSet = new HashSet<String>(list);
+            Set<String> uniqueSet = new HashSet<>(wordList);
             for (String word : uniqueSet) {
-                System.out.println(word + " count of  word : " + Collections.frequency(list,word));
+                System.out.println(word + " count of  word : " + Collections.frequency(wordList,word));
+                if(Collections.frequency(wordList,word)>1){
+                    System.out.println("Word is not unique ");
+                }else {
+                    System.out.println("word is unique  ");
+                }
             }
         } catch (Exception e) {
 
@@ -220,76 +198,62 @@ public class Main {
 
         }
         /*------------Characters level statistics like total words -*/
-        charCount("Each charecter ow much time repeat "+s1);
-        System.out.println();
-        wordsReverse(s1);
+        System.out.println("charcater count :");
+        charCount(userInput);
+        System.out.println("---------");
+        System.out.println("Reverse word : ");
+        wordsReverse(userInput);
     }
 
-    public static HashMap<Character, Integer>
-    sortByValue(HashMap<Character, Integer> hm)
+    public static HashMap<Character, Integer> sortByValue(HashMap<Character, Integer> ascendingSortHashmap)
     {
         // Create a list from elements of HashMap
-        List<Map.Entry<Character, Integer> > list = new LinkedList<Map.Entry<Character, Integer> >(
-                hm.entrySet());
+        List<Map.Entry<Character, Integer> > list = new LinkedList<>(ascendingSortHashmap.entrySet());
 
-        Collections.sort(list,
-                (i1,
-                 i2) -> i1.getValue().compareTo(i2.getValue()));
+        Collections.sort(list,(i1,i2) -> i1.getValue().compareTo(i2.getValue()));
 
-        HashMap<Character, Integer> temp
-                = new LinkedHashMap<Character, Integer>();
-        for (Map.Entry<Character, Integer> aa : list) {
-            temp.put(aa.getKey(), aa.getValue());
+        HashMap<Character, Integer> temp= new LinkedHashMap<>();
+        for (Map.Entry<Character, Integer> ascendingSort : list) {
+            temp.put(ascendingSort.getKey(), ascendingSort.getValue());
         }
-//        System.out.println("Sorting  : "+temp);
         return temp;
     }
-    public static HashMap<Character, Integer>
-    sortByValue1(HashMap<Character, Integer> hm1)
+    public static HashMap<Character, Integer> sortByValue1(HashMap<Character, Integer> descendingSortHashmap)
     {
-        // Create a list from elements of HashMap
-        List<Map.Entry<Character, Integer> > list = new LinkedList<Map.Entry<Character, Integer> >(
-                hm1.entrySet());
+        descendingSortHashmap = descendingSortHashmap.entrySet()
+                .stream()
+                .sorted((i1, i2)-> i2.getValue().compareTo(i1.getValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1, LinkedHashMap::new));
 
-        Collections.sort(list,
-                (i2,
-                 i1) -> i2.getValue().compareTo(i1.getValue()));
-
-        HashMap<Character, Integer> temp= new LinkedHashMap<Character, Integer>();
-        for (Map.Entry<Character, Integer> aa : list) {
-            temp.put(aa.getKey(), aa.getValue());
-        }
-//        System.out.println("Sorting  : "+temp);
-        return temp;
+        return descendingSortHashmap;
     }
 
     /*------------*/
-    public static void charCount(String s)
+    public static void charCount(String userInputString)
     {
 
-        Map<Character, Integer> data = new HashMap<Character, Integer>();
-
-
-        for(int i = 0; i < s.length(); i++)
+        Map<Character, Integer> data = new HashMap<>();
+        for(int i = 0; i < userInputString.length(); i++)
         {
-            if(data.containsKey(s.charAt(i)))
+            if(data.containsKey(userInputString.charAt(i)))
             {
-                data.put(s.charAt(i), data.get(s.charAt(i)) + 1);
+                data.put(userInputString.charAt(i), data.get(userInputString.charAt(i)) + 1);
             }
             else
             {
-                data.put(s.charAt(i), 1);
+                data.put(userInputString.charAt(i), 1);
             }
         }
 
-        for(int i = 0; i < s.length(); i++)
+        for(int i = 0; i < userInputString.length(); i++)
         {
-
-            if(data.get(s.charAt(i)) != 0)
+            if(data.get(userInputString.charAt(i)) != 0)
             {
-                System.out.print(s.charAt(i));
-                System.out.print(data.get(s.charAt(i)) + " ");
-                data.put(s.charAt(i), 0);
+                System.out.print(userInputString.charAt(i)+" is occur ");
+                System.out.println(data.get(userInputString.charAt(i)) + " ");
+                data.put(userInputString.charAt(i), 0);
             }
         }
     }
@@ -297,27 +261,42 @@ public class Main {
     /*-----------------*/
     static void wordsReverse(String str)
     {
-        Stack<Character> st=new Stack<Character>();
+        Stack<Character> wordReverseStack=new Stack<>();
 
         for (int i = 0; i < str.length(); ++i) {
             if ((str.charAt(i) != ' '))
-                st.push(str.charAt(i));
-
-            else {
-                while (st.empty() == false) {
-                    System.out.print(st.pop());
-
-                }
-                System.out.print(" ");
-            }
+                wordReverseStack.push(str.charAt(i));
         }
 
-        while (st.empty() == false) {
-            System.out.print(st.pop());
+        while (wordReverseStack.empty() == false) {
+            System.out.print(wordReverseStack.pop());
 
         }
     }
 
+    public static void printCharacterWithFreq(String s)
+    {
+        Map<Character, Integer> charcterFreqHashmap = new HashMap<>();
+        for(int i = 0; i < s.length(); i++)
+        {
+            if(charcterFreqHashmap.containsKey(s.charAt(i)))
+            {
+                charcterFreqHashmap.put(s.charAt(i), charcterFreqHashmap.get(s.charAt(i)) + 1);
+            }
+            else
+            {
+                charcterFreqHashmap.put(s.charAt(i), 1);
+            }
+        }
 
-
+        for(int i = 0; i < s.length(); i++)
+        {
+            if(charcterFreqHashmap.get(s.charAt(i)) != 0)
+            {
+                System.out.print(s.charAt(i));
+                System.out.print(charcterFreqHashmap.get(s.charAt(i)) + " ");
+                charcterFreqHashmap.put(s.charAt(i), 0);
+            }
+        }
+    }
 }

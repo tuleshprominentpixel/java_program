@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        int arr[] = {1, 2, 3,4,5};
+        int arr[] = {1, 2, 1, 4, 5, 2};
         int n = arr.length;
         System.out.println(n);
         System.out.println(totalNumberOfPairs(arr, n));
@@ -17,33 +17,30 @@ public class Main {
         HashSet<Integer> visitingnumber = new HashSet<Integer>();
 
         int arr1[] = new int[n];
-
-        arr1[n - 1] = 0;
-//        System.out.println(arr1);
         int count = 0;
         for (int i = n - 1; i > 0; i--) {
             System.out.println("array"+arr1[i]);
             if (visitingnumber.contains(a[i]))
-                arr1[i - 1] = count;
+                arr1[i-1] = count;
             else
-                arr1[i - 1] = ++count;
+                arr1[i -1] = ++count;
 
             visitingnumber.add(a[i]);
-//            System.out.println(visitingnumber);
+            System.out.println("visiting number : "+visitingnumber);
+            System.out.println("a[]i : "+a[i]);
         }
 
-        HashSet<Integer> visited2 = new HashSet<Integer>();
+        HashSet<Integer> visitedSecond = new HashSet<>();
 
         int answer = 0;
         for (int i = 0; i < n - 1; i++) {
 
-            if (visited2.contains(a[i]))
+            if (visitedSecond.contains(a[i]))
                 continue;
-
+            System.out.println("Visited : "+visitedSecond);
             answer += arr1[i];
 
-            visited2.add(a[i]);
-//            System.out.println(visited2);
+            visitedSecond.add(a[i]);
         }
         return answer;
     }

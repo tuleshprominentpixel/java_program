@@ -1,19 +1,17 @@
 package com.company;
 
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 class ProminentTrainee implements Serializable {
-    int TraineeId;
-    String TraineeName;
-    Date TraineeDOB;
-    int TraineeAge;
+    private int TraineeId;
+    private String TraineeName;
+    private Date TraineeDOB;
+    private int TraineeAge;
 
     ProminentTrainee(int id,String name,Date dob,int age){
         this.TraineeId=id;
@@ -34,6 +32,22 @@ class ProminentTrainee implements Serializable {
         return TraineeDOB;
     }
 
+    public void setTraineeId(int traineeId) {
+        TraineeId = traineeId;
+    }
+
+    public void setTraineeName(String traineeName) {
+        TraineeName = traineeName;
+    }
+
+    public void setTraineeDOB(Date traineeDOB) {
+        TraineeDOB = traineeDOB;
+    }
+
+    public void setTraineeAge(int traineeAge) {
+        TraineeAge = traineeAge;
+    }
+
     @Override
     public String toString() {
         return "ProminentTrainee{" +
@@ -50,9 +64,9 @@ class IdComparator implements Comparator<ProminentTrainee> {
     // override the compare() method
     public int compare(ProminentTrainee s1, ProminentTrainee s2)
     {
-        if (s1.TraineeId == s2.TraineeId)
+        if (s1.getId() == s2.getId())
             return 0;
-        else if (s1.TraineeId > s2.TraineeId)
+        else if (s1.getId() > s2.getId())
             return 1;
         else
             return -1;
@@ -94,7 +108,6 @@ class AgeComparator implements Comparator<ProminentTrainee> {
 
 public class Main {
     private static final String SER_FILE = "/home/pp-2/Desktop/java/a12.txt";
-    static List<ProminentTrainee> persons = new ArrayList<ProminentTrainee>();
     public static void main(String[] args) throws Exception {
 	// write your code here
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -115,17 +128,17 @@ public class Main {
         System.out.println("---------------------------");
         System.out.println("For loop ");
         for(int i=0;i<ProminentTraineelist.size();i++){
-            System.out.print(" Id : "+ProminentTraineelist.get(i).TraineeId + " ");
-            System.out.print(" Name : "+ProminentTraineelist.get(i).TraineeName + " ");
-            System.out.println(" Age : "+ProminentTraineelist.get(i).TraineeAge + " ");
+            System.out.print(" Id : "+ProminentTraineelist.get(i).getId() + " ");
+            System.out.print(" Name : "+ProminentTraineelist.get(i).getName() + " ");
+            System.out.println(" Age : "+ProminentTraineelist.get(i).getAge() + " ");
         }
 
         System.out.println("---------------------------");
         System.out.println("For each loop ");
-        for (ProminentTrainee pt1:ProminentTraineelist){
-            System.out.print(" Id : "+pt1.TraineeId);
-            System.out.print(" Name : "+pt1.TraineeName);
-            System.out.println(" Age : "+pt1.TraineeDOB);
+        for (ProminentTrainee trainne:ProminentTraineelist){
+            System.out.print(" Id : "+trainne.getId();
+            System.out.print(" Name : "+trainne.TraineeName);
+            System.out.println(" Age : "+trainne.TraineeDOB);
         }
 
         System.out.println("---------------------------");
@@ -178,16 +191,16 @@ public class Main {
         System.out.println("--------------------------");
         System.out.println("Convert list to set and count total element of set");
 
-        Set<ProminentTrainee> hSet = new HashSet<ProminentTrainee>();
+        Set<ProminentTrainee> prominentTraineeSet = new HashSet<ProminentTrainee>();
         for (ProminentTrainee x : ProminentTraineelist)
-            hSet.add(x);
+            prominentTraineeSet.add(x);
 
         System.out.println("Created HashSet is");
-        for (ProminentTrainee x : hSet)
+        for (ProminentTrainee x : prominentTraineeSet)
             System.out.println(x.TraineeName);
         System.out.println("--------------------------");
         System.out.println("count total element of set");
-        System.out.println(hSet.stream().count());
+        System.out.println(prominentTraineeSet.stream().count());
 
 
         System.out.println("--------------------------");
