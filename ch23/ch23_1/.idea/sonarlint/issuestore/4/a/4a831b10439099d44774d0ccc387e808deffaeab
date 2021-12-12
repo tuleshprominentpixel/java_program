@@ -1,0 +1,72 @@
+
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(ãø©Æşÿÿÿÿ
+g
+java:S1149ˆ"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ü‚’
+m
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 55 to the 15 allowed.(ÙØ¤Şıÿÿÿÿ
+d
+java:S1659"IDeclare "numOfNumbers" and all following declarations on a separate line.(·õÌııÿÿÿÿ
+P
+java:S1659"5Declare "wordLengthLessThanThree" on a separate line.(éÀØ·ùÿÿÿÿ
+W
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(ÒĞ“İ
+E
+java:S1197("*Move the array designators [] to the type.(‰áâêıÿÿÿÿ
+S	java:S106U"9Replace this use of System.out or System.err by a logger.(ğÁè©øÿÿÿÿ
+N	java:S106X"9Replace this use of System.out or System.err by a logger.(…âÔ×
+A
+java:S1481m"&Remove this unused "s" local variable.(ĞŸáöùÿÿÿÿ
+S	java:S106z"9Replace this use of System.out or System.err by a logger.(öÑ¦÷úÿÿÿÿ
+S	java:S106~"9Replace this use of System.out or System.err by a logger.(›µÊııÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(‘ñÙË
+T	java:S106€"9Replace this use of System.out or System.err by a logger.(ı“‹ıÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(¼òºQ
+T	java:S106ƒ"9Replace this use of System.out or System.err by a logger.(÷†ˆûÿÿÿÿ
+T	java:S106„"9Replace this use of System.out or System.err by a logger.(ŞÆï«ıÿÿÿÿ
+T	java:S106…"9Replace this use of System.out or System.err by a logger.(±‹ÆÁıÿÿÿÿ
+O	java:S106‡"9Replace this use of System.out or System.err by a logger.(Š†‡¦
+T	java:S106‰"9Replace this use of System.out or System.err by a logger.(‹¶§…úÿÿÿÿ
+O	java:S106"9Replace this use of System.out or System.err by a logger.(·Á„ì
+N	java:S106’"9Replace this use of System.out or System.err by a logger.(Àø’?
+O	java:S106”"9Replace this use of System.out or System.err by a logger.(·Á„ì
+O	java:S106—"9Replace this use of System.out or System.err by a logger.(ÄÃ”
+O	java:S106š"9Replace this use of System.out or System.err by a logger.(·Á„ì
+O	java:S106£"9Replace this use of System.out or System.err by a logger.(¹³ÃÄ
+O	java:S106¥"9Replace this use of System.out or System.err by a logger.(¬Ä½
+T	java:S106¨"9Replace this use of System.out or System.err by a logger.(µÛÖ°ÿÿÿÿÿ
+]
+java:S1075­"ARefactor your code to get this URI from a customizable parameter.(ÈÄıñúÿÿÿÿ
+T	java:S106¹"9Replace this use of System.out or System.err by a logger.(ëÕ”îüÿÿÿÿ
+O	java:S106¼"9Replace this use of System.out or System.err by a logger.(î áù
+O	java:S106¾"9Replace this use of System.out or System.err by a logger.(®ßĞì
+O	java:S106À"9Replace this use of System.out or System.err by a logger.(²âÎ¶
+T	java:S106Å"9Replace this use of System.out or System.err by a logger.(¨ØÎûÿÿÿÿ
+T	java:S106É"9Replace this use of System.out or System.err by a logger.(°ç†òüÿÿÿÿ
+O	java:S106Ë"9Replace this use of System.out or System.err by a logger.(¦œß®
+T	java:S106Ì"9Replace this use of System.out or System.err by a logger.(Š¦Õşÿÿÿÿ
+T	java:S106ş"9Replace this use of System.out or System.err by a logger.(öà™ìúÿÿÿÿ
+O	java:S106ÿ"9Replace this use of System.out or System.err by a logger.(Ì˜Éù
+C
+java:S1125"'Remove the unnecessary boolean literal.(„ˆâĞùÿÿÿÿ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(ËÓÓ¢ÿÿÿÿÿ
+T	java:S106¨"9Replace this use of System.out or System.err by a logger.(™·¼ğøÿÿÿÿ
+T	java:S106©"9Replace this use of System.out or System.err by a logger.(‹ËÅÍøÿÿÿÿ
+^
+java:S1192"GDefine a constant instead of duplicating this literal "Key = " 3 times.(·Á„ì
+b
+java:S1192"KDefine a constant instead of duplicating this literal ", Value = " 3 times.(·Á„ì
+„
+java:S1319Ğ"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ÁÉ‘–
+ˆ
+java:S1319Ğ"qThe type of "ascendingSortHashmap" should be an interface such as "Map" rather than the implementation "HashMap".(ÁÉ‘–
+„
+java:S1319İ"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(¦ö³‘
+‰
+java:S1319İ"rThe type of "descendingSortHashmap" should be an interface such as "Map" rather than the implementation "HashMap".(¦ö³‘
+7
+java:S16439"Use a StringBuilder instead.(éïê¡ùÿÿÿÿ
+b
+java:S2095"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(¥ñ†
+a
+java:S2095®"EUse try-with-resources or close this "Scanner" in a "finally" clause.(‘½Îüÿÿÿÿ

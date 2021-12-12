@@ -5,341 +5,243 @@ import org.json.JSONObject;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
-
-class ProminentTrainee implements Serializable {
-    private int TraineeId;
-    private String TraineeName;
-    private Date TraineeDOB;
-    private int TraineeAge;
-
-    ProminentTrainee(int id,String name,Date dob,int age){
-        this.TraineeId=id;
-        this.TraineeName=name;
-        this.TraineeDOB=dob;
-        this.TraineeAge=age;
-    }
-    public String getName() {
-        return TraineeName;
-    }
-    public int getAge() {
-        return TraineeAge;
-    }
-    public int getId() {
-        return TraineeId;
-    }
-    public Date getDob() {
-        return TraineeDOB;
-    }
-
-    public void setTraineeId(int traineeId) {
-        TraineeId = traineeId;
-    }
-
-    public void setTraineeName(String traineeName) {
-        TraineeName = traineeName;
-    }
-
-    public void setTraineeDOB(Date traineeDOB) {
-        TraineeDOB = traineeDOB;
-    }
-
-    public void setTraineeAge(int traineeAge) {
-        TraineeAge = traineeAge;
-    }
-
-    @Override
-    public String toString() {
-        return "ProminentTrainee{" +
-                "TraineeId=" + TraineeId +
-                ", TraineeName='" + TraineeName + '\'' +
-                ", TraineeDOB=" + TraineeDOB +
-                ", TraineeAge=" + TraineeAge+
-                '}';
-    }
-}
-
-class IdComparator implements Comparator<ProminentTrainee> {
-
-    // override the compare() method
-    public int compare(ProminentTrainee s1, ProminentTrainee s2)
-    {
-        if (s1.getId() == s2.getId())
-            return 0;
-        else if (s1.getId() > s2.getId())
-            return 1;
-        else
-            return -1;
-    }
-}
-
-// creates the comparator for comparing name
-class NameComparator implements Comparator<ProminentTrainee> {
-
-    // override the compare() method
-    public int compare(ProminentTrainee p1, ProminentTrainee p2)
-    {
-        return p1.getName().compareTo(p2.getName());
-    }
-}
-// creates the comparator for comparing name
-class DateComparator implements Comparator<ProminentTrainee> {
-
-    // override the compare() method
-    public int compare(ProminentTrainee p1, ProminentTrainee p2)
-    {
-        return p1.getDob().compareTo(p2.getDob());
-    }
-}
-// creates the comparator for comparing name
-class AgeComparator implements Comparator<ProminentTrainee> {
-
-    // override the compare() method
-    public int compare(ProminentTrainee p1, ProminentTrainee p2)
-    {
-        if (p1.getAge() == p2.getAge())
-            return 0;
-        else if (p1.getAge() > p2.getAge())
-            return 1;
-        else
-            return -1;
-    }
-}
+import java.util.logging.*;
 
 public class Main {
-    private static final String SER_FILE = "/home/pp-2/Desktop/java/a12.txt";
+    static Logger LOG = Logger.getLogger(ProminentTrainee.class.getName());
+    static List<ProminentTrainee> prominentTraineeList = new ArrayList<>();
     public static void main(String[] args) throws Exception {
-	// write your code here
+        // write your code here
+        String newLine="------------------------------------------";
+        final String fileName="/home/pp-2/Desktop/java/a14.txt";
+        final String binaryFileName="/home/pp-2/Desktop/java/b1.txt";
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-        ProminentTrainee p1=new ProminentTrainee(1,"Tulesh",sdf.parse("17-10-2001"),15);
-        ProminentTrainee p2=new ProminentTrainee(2,"Jenish",sdf.parse("17-11-2001"),21);
-        ProminentTrainee p3=new ProminentTrainee(3,"Harsh",sdf.parse("17-12-2001"),22);
-        ProminentTrainee p4=new ProminentTrainee(4,"Abc",sdf.parse("17-02-2004"),17);
-        ProminentTrainee p5=new ProminentTrainee(5,"XYZ",sdf.parse("17-05-2004"),17);
-        //Create new arrayList, add custom objects of ProminentTrainee class. Class has TraineeId, TraineeName, TraineeAge, TraineeDOB properties
-        ArrayList<ProminentTrainee> ProminentTraineelist=new ArrayList();
-        ProminentTraineelist.add(p1);
-        ProminentTraineelist.add(p2);
-        ProminentTraineelist.add(p3);
-        ProminentTraineelist.add(p4);
+        ProminentTrainee p1 = new ProminentTrainee(1, "Tulesh", sdf.parse("17-10-2001"), 15);
+        ProminentTrainee p2 = new ProminentTrainee(2, "Jenish", sdf.parse("17-11-2001"), 21);
+        ProminentTrainee p3 = new ProminentTrainee(3, "Harsh", sdf.parse("17-12-2001"), 22);
+        ProminentTrainee p4 = new ProminentTrainee(4, "Abc", sdf.parse("17-02-2004"), 17);
+        ProminentTrainee p5 = new ProminentTrainee(5, "XYZ", sdf.parse("17-05-2004"), 17);
+
+
+        //Create new arrayList, add custom objects of ProminentTrainee class. Class has getId(), getName(), getAge(), getDob() properties
+
+        prominentTraineeList.add(p1);
+        prominentTraineeList.add(p2);
+        prominentTraineeList.add(p3);
+        prominentTraineeList.add(p4);
 
         //for loop,
-        System.out.println("---------------------------");
-        System.out.println("For loop ");
-        for(int i=0;i<ProminentTraineelist.size();i++){
-            System.out.print(" Id : "+ProminentTraineelist.get(i).getId() + " ");
-            System.out.print(" Name : "+ProminentTraineelist.get(i).getName() + " ");
-            System.out.println(" Age : "+ProminentTraineelist.get(i).getAge() + " ");
+        LOG.info(newLine);
+        LOG.info("For loop ");
+        for (int i = 0; i < prominentTraineeList.size(); i++) {
+            LOG.info(" Id is : " + prominentTraineeList.get(i).getId() + " "+" Name is : " + prominentTraineeList.get(i).getName() + " "+" age is : " + prominentTraineeList.get(i).getAge() + " ");
         }
 
-        System.out.println("---------------------------");
-        System.out.println("For each loop ");
-        for (ProminentTrainee trainne:ProminentTraineelist){
-            System.out.print(" Id : "+trainne.getId();
-            System.out.print(" Name : "+trainne.TraineeName);
-            System.out.println(" Age : "+trainne.TraineeDOB);
+        LOG.info(newLine);
+        LOG.info("For each loop ");
+        for (ProminentTrainee trainee : prominentTraineeList) {
+            LOG.info(" Trainee id  : " + trainee.getId()+" Trainee name :  " + trainee.getName()+" Trainee age : " + trainee.getDob());
+
         }
 
-        System.out.println("---------------------------");
-        System.out.println("lambda function ");
-        ProminentTraineelist.forEach(number->System.out.println(" Id : "+number.TraineeId+" Age "+number.TraineeAge));
+        LOG.info(newLine);
+        LOG.info("lambda function ");
+        prominentTraineeList.forEach(number -> LOG.info(" Id of trainee : " + number.getId() + " Age of trainee  " + number.getAge()));
 
-        System.out.println("---------------------------");
-        System.out.println("Iterator ");
-        Iterator<ProminentTrainee> it = ProminentTraineelist.iterator();
+        LOG.info(newLine);
+        LOG.info("Iterator ");
+        Iterator<ProminentTrainee> it = prominentTraineeList.iterator();
         while (it.hasNext()) {
-            var temp=it.next();
-            System.out.println(temp);
+            var temp = it.next();
+            System.out.println((temp));
         }
 
-        System.out.println("-------------------------");
+        LOG.info(newLine);
         //Count element of a list using lambda expression
-        //long count = ProminentTraineelist.stream().count();
-        long count = ProminentTraineelist.stream().filter(trainee -> trainee.TraineeAge!=-1).count();
-        System.out.println("Count element of a list using lambda expression "+count);
+        long count = prominentTraineeList.stream().filter(trainee -> trainee.getAge() != -1).count();
+        LOG.info("Count element of a list using lambda expression " + count);
 
-        /*Map<String, Long> couterMap = ProminentTraineelist.stream().collect(Collectors.groupingBy(e -> e.toString(),Collectors.counting()));
-        System.out.println(couterMap);*/
+        LOG.info(newLine);
+        LOG.info("Insert element into the array list at the second position");
+        prominentTraineeList.add(2, p5);
+        printAllList(prominentTraineeList);
 
-        System.out.println("--------------------------");
-        System.out.println("Insert element into the array list at the second position");
-        ProminentTraineelist.add(2,p5);
-        ProminentTraineelist.forEach((e) -> {
-            System.out.print(e.TraineeId + ", ");
-            System.out.print(e.TraineeName + ", ");
-            System.out.print(e.TraineeDOB + ", ");
-            System.out.print(e.TraineeAge + ", ");
-            System.out.println("");
-        });
+        LOG.info(newLine);
+        LOG.info("Retrieve an element of 3rd index and print it");
+        Object element = prominentTraineeList.get(3);
+        ProminentTrainee el = (ProminentTrainee) element;
+        LOG.info("3nd index  trainee name: " + el.getName() + " id : " + el.getId() + " date " + el.getDob());
 
-        System.out.println("--------------------------");
-        System.out.println("Retrieve an element of 3rd index and print it");
-        Object element = ProminentTraineelist.get(3);
-        ProminentTrainee el=(ProminentTrainee)element;
-        System.out.println("3nd index  trainee name: "+el.TraineeName+" id : "+el.TraineeId+" date "+el.TraineeDOB);
-
-        System.out.println("--------------------------");
-        System.out.println("Print element whose TraineeId is 5 with the help of lambda");
-        List<ProminentTrainee> printElementFive=ProminentTraineelist.stream()
-                .filter(n -> n.TraineeId == 5)
-                .collect(Collectors.toList());
-        System.out.println(printElementFive);
+        LOG.info(newLine);
+        LOG.info("Print element whose getId() is 5 with the help of lambda");
+        List<ProminentTrainee> printElementFive = prominentTraineeList.stream()
+                .filter(n -> n.getId() == 5)
+                .toList();
+        System.out.println((printElementFive));
 
 
         /*----------Convert list to set and count total element of set--->*/
-        System.out.println("--------------------------");
-        System.out.println("Convert list to set and count total element of set");
+        LOG.info(newLine);
+        LOG.info("Convert list to set and count total element of set");
 
-        Set<ProminentTrainee> prominentTraineeSet = new HashSet<ProminentTrainee>();
-        for (ProminentTrainee x : ProminentTraineelist)
+        Set<ProminentTrainee> prominentTraineeSet = new HashSet<>();
+        for (ProminentTrainee x : prominentTraineeList)
             prominentTraineeSet.add(x);
 
-        System.out.println("Created HashSet is");
+        LOG.info("Created HashSet is");
         for (ProminentTrainee x : prominentTraineeSet)
-            System.out.println(x.TraineeName);
-        System.out.println("--------------------------");
-        System.out.println("count total element of set");
-        System.out.println(prominentTraineeSet.stream().count());
+            LOG.info(x.getName());
+        LOG.info(newLine);
+        LOG.info("count total element of set");
+        System.out.println((prominentTraineeSet.stream().count()));
 
 
-        System.out.println("--------------------------");
-        System.out.println("Sort list based on all the four properties. Use lambda expression and functional interface");
-        System.out.println("Before sorting id");
-        ProminentTraineelist.forEach((s)->System.out.println("Id : "+s.TraineeId+" Name : "+s.TraineeName));
-        System.out.println("After sorting id");
-        ProminentTraineelist.sort((ProminentTrainee p11, ProminentTrainee p12)->p11.getId()-p12.getId());
-        ProminentTraineelist.forEach((s)->System.out.println("Id : "+s.TraineeId+" Name : "+s.TraineeName+" Age : "+s.TraineeAge+" Date : "+s.TraineeDOB));
-        System.out.println("After sorting by age");
-        ProminentTraineelist.sort((ProminentTrainee p11, ProminentTrainee p12)->p11.getAge()-p12.getAge());
+        LOG.info(newLine);
+        LOG.info("Sort list based on all the four properties. Use lambda expression and functional interface");
+        LOG.info("Before sorting id");
+        printAllList(prominentTraineeList);
+        LOG.info("After sorting id");
+        prominentTraineeList.sort((ProminentTrainee p11, ProminentTrainee p12) -> p11.getId() - p12.getId());
+        printAllList(prominentTraineeList);
+        LOG.info("After sorting by age");
+        prominentTraineeList.sort((ProminentTrainee p11, ProminentTrainee p12) -> p11.getAge() - p12.getAge());
 
-        ProminentTraineelist.forEach((s)->System.out.println("Id : "+s.TraineeId+" Name : "+s.TraineeName+" Age : "+s.TraineeAge+" Date : "+s.TraineeDOB));
-        ProminentTraineelist.sort((ProminentTrainee p11, ProminentTrainee p12)->p11.getName().compareTo(p12.getName()));
-        System.out.println("Name sorting: -------------");
-        ProminentTraineelist.forEach((s)->System.out.println("Id : "+s.TraineeId+" Name : "+s.TraineeName+" Age : "+s.TraineeAge+" Date : "+s.TraineeDOB));
-        System.out.println("Date sorting---------");
-        ProminentTraineelist.sort((ProminentTrainee p11, ProminentTrainee p12)->p11.getDob().compareTo(p12.getDob()));
-        ProminentTraineelist.forEach((s)->System.out.println("Id : "+s.TraineeId+" Name : "+s.TraineeName+" Age : "+s.TraineeAge+" Date : "+s.TraineeDOB));
+        printAllList(prominentTraineeList);
+        prominentTraineeList.sort((ProminentTrainee p11, ProminentTrainee p12) -> p11.getName().compareTo(p12.getName()));
+        LOG.info("Name sorting: -------------");
+        printAllList(prominentTraineeList);
+        LOG.info("Date sorting---------");
+        prominentTraineeList.sort((ProminentTrainee p11, ProminentTrainee p12) -> p11.getDob().compareTo(p12.getDob()));
+        printAllList(prominentTraineeList);
 
-        System.out.println("----------------------");
-        System.out.println("NameComparator with functional  interface");
-        /*Comparator sortingByName = new Comparator() {
-            @Override
-            public int compare(ProminentTrainee s1, ProminentTrainee s2) {
-                return s1.getName().compareTo(s2.getName());
-            }
-        };*/
-        Collections.sort(ProminentTraineelist, new NameComparator());
-        for (ProminentTrainee Trainee : ProminentTraineelist) {
-            System.out.println(" Name : "+Trainee.getName() + " Id :" + Trainee.getId()
-                    + "  Date : " + Trainee.getDob());
-        }
-        System.out.println("Compare by Id with functional  interface");
-        Collections.sort(ProminentTraineelist, new IdComparator());
-        for (ProminentTrainee Trainee : ProminentTraineelist) {
-            System.out.println("Id : "+Trainee.getId() + " Name : "+ Trainee.getName()
-                    + " Date : " + Trainee.getDob());
-        }
-        System.out.println("Compare by AgeComparator with functional  interface");
-        Collections.sort(ProminentTraineelist, new AgeComparator());
-        for (ProminentTrainee Trainee : ProminentTraineelist) {
-            System.out.println("Id : "+Trainee.getId() + " Name : "+ Trainee.getName()
-                    + " Date : " + Trainee.getDob()+" Age : "+Trainee.getAge());
-        }
-        System.out.println("Compare by Date with functional  interface");
-        Collections.sort(ProminentTraineelist, new DateComparator());
-        for (ProminentTrainee Trainee : ProminentTraineelist) {
-            System.out.println("Id : "+Trainee.getId() + " Name : "+ Trainee.getName()
-                    + " Date : " + Trainee.getDob()+" Age : "+Trainee.getAge());
-        }
+        LOG.info(newLine);
+        LOG.info("NameComparator with functional  interface");
+
+        Collections.sort(prominentTraineeList, new NameComparator());
+        printAllList(prominentTraineeList);
+
+        LOG.info("Compare by Id with functional  interface");
+        Collections.sort(prominentTraineeList, new IdComparator());
+        LOG.info("-*****************************");
+        printAllList(prominentTraineeList);
+
+        LOG.info("Compare by AgeComparator with functional  interface");
+        Collections.sort(prominentTraineeList, new AgeComparator());
+        printAllList(prominentTraineeList);
+
+        LOG.info("Compare by Date with functional  interface");
+        Collections.sort(prominentTraineeList, new DateComparator());
+        printAllList(prominentTraineeList);
 
         /*-------- Convert list to map using lambda expression.----------*/
-        System.out.println("--------------------------");
-        System.out.println("Convert list to map using lambda expression. Keep TraineeId as Map key and ProminentTrainee as a map value");
-        HashMap<Integer,ProminentTrainee> prominentTraineeHashmap=new HashMap<>();
-        for (ProminentTrainee pTrainee:ProminentTraineelist){
-            prominentTraineeHashmap.put(pTrainee.TraineeId,pTrainee);
+        LOG.info(newLine);
+        LOG.info("Convert list to map using lambda expression. Keep getId() as Map key and ProminentTrainee as a map value");
+        HashMap<Integer, ProminentTrainee> prominentTraineeHashmap = new HashMap<>();
+        for (ProminentTrainee pTrainee : prominentTraineeList) {
+            prominentTraineeHashmap.put(pTrainee.getId(), pTrainee);
         }
-        System.out.println("Map  : " + prominentTraineeHashmap);
+        LOG.info("Map  : " + prominentTraineeHashmap);
 
-        System.out.println("--------------------------");
-        System.out.println("Write all the records into plain text files. Record separator should be new line and field separator tab");
+        LOG.info(newLine);
+        LOG.info("Write all the records into plain text files. Record separator should be new line and field separator tab");
 
-        FileWriter filewr=new FileWriter("/home/pp-2/Desktop/java/a14.txt");
-        for (int i=0;i<ProminentTraineelist.stream().count();i++){
-            filewr.write("{\"id\":\""+ProminentTraineelist.get(i).TraineeId+"\",\t\"name\":\""+ProminentTraineelist.get(i).TraineeName+"\",\t\"date\":\""+ProminentTraineelist.get(i).TraineeDOB+"\",\t\"age\":\""+ProminentTraineelist.get(i).TraineeAge);
-            filewr.write("\"},\n");
-        }
-        filewr.close();
-        List<ProminentTrainee> newProminentTraineeList=new ArrayList<>();
-
-        BufferedReader reader = new BufferedReader(new FileReader("/home/pp-2/Desktop/java/a14.txt"));
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            JSONObject json = new JSONObject(line);
-
-            String tempid = (String) json.get("id");
-            String name = (String) json.get("name");
-            String tempdate = (String) json.get("date");
-            String tempage = (String) json.get("age");
-
-            int id=Integer.parseInt(tempid);
-            int age=Integer.parseInt(tempage);
-            Date date1=new SimpleDateFormat("E MMM dd HH:mm:ss Z yy").parse(tempdate);
-
-            ProminentTrainee tempProminentObject=new ProminentTrainee(id,name,(date1),age);
-
-            newProminentTraineeList.add(tempProminentObject);
-
-        }
-        reader.close();
-        for (ProminentTrainee pt1:newProminentTraineeList){
-            System.out.print(" Id : "+pt1.TraineeId);
-            System.out.print(" Name : "+pt1.TraineeName);
-            System.out.println(" Age : "+pt1.TraineeDOB);
+        try(FileWriter filewr = new FileWriter(fileName);) {
+            for (int i = 0; i < prominentTraineeList.stream().count(); i++) {
+                filewr.write("{\"id\":\"" + prominentTraineeList.get(i).getId() + "\",\t\"name\":\"" + prominentTraineeList.get(i).getName() + "\",\t\"date\":\"" + prominentTraineeList.get(i).getDob() + "\",\t\"age\":\"" + prominentTraineeList.get(i).getAge());
+                filewr.write("\"},\n");
+            }
+        } catch (Exception e) {
+            LOG.info("Exception :" + e);
         }
 
-        System.out.println("---------------------------------");
-        System.out.println("Write all the records into binary files and read it back to list.");
 
-        FileOutputStream fos = new FileOutputStream(new File("/home/pp-2/Desktop/java/b1.txt"));
-        ObjectOutputStream o = new ObjectOutputStream(fos);
+        List<ProminentTrainee> newProminentTraineeList = new ArrayList<>();
 
-        // Write objects to file
-        o.writeObject(p1);
-        o.writeObject(p2);
-        o.writeObject(p3);
-        o.writeObject(p4);
-        o.writeObject(p5);
+        try(BufferedReader reader=new BufferedReader(new FileReader(fileName));) {
 
-        o.close();
-        fos.close();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                JSONObject json = new JSONObject(line);
 
-        FileInputStream fi = new FileInputStream(new File("/home/pp-2/Desktop/java/b1.txt"));
-        ObjectInputStream oi = new ObjectInputStream(fi);
+                String tempid = (String) json.get("id");
+                String name = (String) json.get("name");
+                String tempdate = (String) json.get("date");
+                String tempage = (String) json.get("age");
 
-        // Read objects
-        ProminentTrainee pr1 = (ProminentTrainee) oi.readObject();
-        ProminentTrainee pr2 = (ProminentTrainee) oi.readObject();
-        ProminentTrainee pr3 = (ProminentTrainee) oi.readObject();
-        ProminentTrainee pr4 = (ProminentTrainee) oi.readObject();
-        ProminentTrainee pr5 = (ProminentTrainee) oi.readObject();
+                int id = Integer.parseInt(tempid);
+                int age = Integer.parseInt(tempage);
+                Date date1 = new SimpleDateFormat("E MMM dd HH:mm:ss Z yy").parse(tempdate);
 
-        ArrayList<ProminentTrainee> tempProminentTraineelist=new ArrayList();
+                ProminentTrainee tempProminentObject = new ProminentTrainee(id, name, (date1), age);
 
-        tempProminentTraineelist.add(pr1);
-        tempProminentTraineelist.add(pr2);
-        tempProminentTraineelist.add(pr3);
-        tempProminentTraineelist.add(pr4);
-        tempProminentTraineelist.add(pr5);
+                newProminentTraineeList.add(tempProminentObject);
+            }
+        } catch (Exception e) {
+            LOG.info("Exception : "+e);
+        }
 
-        oi.close();
-        fi.close();
+        printAllList(newProminentTraineeList);
 
-        for (ProminentTrainee pt1:tempProminentTraineelist){
-            System.out.print(" Id : "+pt1.TraineeId);
-            System.out.print(" Name : "+pt1.TraineeName);
-            System.out.println(" Age : "+pt1.TraineeDOB);
+        LOG.info("---------------------------------");
+        LOG.info("Write all the records into binary files and read it back to list.");
+
+
+        try( FileOutputStream fos = new FileOutputStream(new File(binaryFileName));) {
+
+            ObjectOutputStream o = null;
+            o = new ObjectOutputStream(fos);
+
+            // Write objects to file
+            o.writeObject(p1);
+            o.writeObject(p2);
+            o.writeObject(p3);
+            o.writeObject(p4);
+            o.writeObject(p5);
+
+            o.close();
+        } catch (Exception e) {
+            LOG.info("exception to write binary file : " + e);
+        }
+
+
+        try(FileInputStream fi = new FileInputStream(new File(binaryFileName));) {
+            ObjectInputStream oi = new ObjectInputStream(fi);
+
+            // Read objects
+            ProminentTrainee pr1 = (ProminentTrainee) oi.readObject();
+            ProminentTrainee pr2 = (ProminentTrainee) oi.readObject();
+            ProminentTrainee pr3 = (ProminentTrainee) oi.readObject();
+            ProminentTrainee pr4 = (ProminentTrainee) oi.readObject();
+            ProminentTrainee pr5 = (ProminentTrainee) oi.readObject();
+
+            ArrayList<ProminentTrainee> tempProminentTraineelist = new ArrayList(5);
+
+            tempProminentTraineelist.add(pr1);
+            tempProminentTraineelist.add(pr2);
+            tempProminentTraineelist.add(pr3);
+            tempProminentTraineelist.add(pr4);
+            tempProminentTraineelist.add(pr5);
+
+            for (ProminentTrainee pt1 : tempProminentTraineelist) {
+                System.out.print(" Id : " + pt1.getId());
+                System.out.print(" Name : " + pt1.getName());
+                LOG.info(" Age : " + pt1.getDob());
+            }
+            oi.close();
+        } catch (Exception e) {
+            LOG.info("exception in file read : " + e);
+        }
+
+
+
+
+    }
+
+    public static void printAllList(List<ProminentTrainee> allTrainee){
+        for (ProminentTrainee Trainee : allTrainee) {
+            LOG.info("Id : " + Trainee.getId() + " Name : " + Trainee.getName()
+                    + " Date : "+Trainee.getDob()+ " Age : "+Trainee.getAge());
         }
     }
 }
