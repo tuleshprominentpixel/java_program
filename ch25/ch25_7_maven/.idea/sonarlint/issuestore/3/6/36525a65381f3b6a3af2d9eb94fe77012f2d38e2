@@ -1,0 +1,23 @@
+
+M
+java:S3740Ü"/Provide the parametrized type for this generic.(Å°È8õÿı»Û/
+c
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(ô–ıÿùÿÿÿÿ8×šüºÛ/
+c
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(Şà¢¢ıÿÿÿÿ8ØšüºÛ/
+^
+java:S3457:"AFormat specifiers should be used instead of string concatenation.(åĞÚù8‚€ş»Û/
+Z	java:S106R"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ8…€ş»Û/
+_
+java:S3457"AFormat specifiers should be used instead of string concatenation.(Áã™›8Œ€ş»Û/
+_
+java:S3457·"AFormat specifiers should be used instead of string concatenation.(Áã™›8‘€ş»Û/
+d
+java:S3457Î"AFormat specifiers should be used instead of string concatenation.(Á¥ìùûÿÿÿÿ8•€ş»Û/
+_
+java:S3457ç"AFormat specifiers should be used instead of string concatenation.(œéÀÈ8˜€ş»Û/
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(š…ÿçşÿÿÿÿ8à­¶¼Û/
+T
+java:S2629:"7Use the built-in formatting to construct this argument.(åĞÚù8œ€ş»Û/
+F
+java:S2629@"$Invoke method(s) only conditionally.(úğÅùÿÿÿÿ8œ€ş»Û/
