@@ -21,6 +21,7 @@ public class Course {
         this.courseId = courseId;
         this.courseName = courseName;
     }
+
     public Course() {
         super();
         // TODO Auto-generated constructor stub

@@ -18,5 +18,9 @@
         <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
 
     </properties>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-core -->
+
+    </dependencies>
 
 </project>

@@ -1,9 +1,13 @@
 package com.company;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.*;
 
 public class Main {
 
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
 	// write your code here
         ArrayList<Integer> arrayList = new ArrayList<>();
@@ -21,7 +25,6 @@ public class Main {
 
         LinkedHashSet<Integer> lhset= new LinkedHashSet<>(arrayList);
 
-        System.out.println("value in arraylist with unique");
-        System.out.println(lhset);
+        logger.info("value in arraylist with unique {} ",lhset);
     }
 }

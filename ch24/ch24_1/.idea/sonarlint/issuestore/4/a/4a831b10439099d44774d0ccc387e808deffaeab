@@ -1,0 +1,14 @@
+
+=
+java:S23260"E is not used in the class.(…ÿ°´ÿÿÿÿÿ8—¶ÅÂÛ/
+a
+java:S1854?"DRemove this useless assignment to local variable "betterElementCar".(ùÑèª8˜¶ÅÂÛ/
+c
+java:S1854>"ARemove this useless assignment to local variable "betterElement".(¿›Åûûÿÿÿÿ8˜¶ÅÂÛ/
+T
+java:S1481>"2Remove this unused "betterElement" local variable.(¿›Åûûÿÿÿÿ8š¶ÅÂÛ/
+R
+java:S1481?"5Remove this unused "betterElementCar" local variable.(ùÑèª8š¶ÅÂÛ/
+m	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÏ¬õ8¶ÅÂÛ/
+m	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÏ¬õ8¶ÅÂÛ/
+m	java:S114,"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(–•‹8¶ÅÂÛ/

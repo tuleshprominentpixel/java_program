@@ -2,67 +2,55 @@ package com.company;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.logging.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.*;
 
 public class ProminentTrainee implements Serializable {
-    static Logger logger = Logger.getLogger(ProminentTrainee.class.getName());
-    public final static Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-    private int TraineeId;
-    private String TraineeName;
-    private Date TraineeDOB;
-    private int TraineeAge;
-
-    public void sampleLog()
-    {
-        LOGGER.log(Level.WARNING, "Welcome to Edureka!");
-    }
-
+    private int traineeId;
+    private String traineeName;
+    private Date traineeDOB;
+    private int traineeAge;
 
     public ProminentTrainee(int id,String name,Date dob,int age){
-        this.TraineeId=id;
-        this.TraineeName=name;
-        this.TraineeDOB=dob;
-        this.TraineeAge=age;
+        this.traineeId =id;
+        this.traineeName =name;
+        this.traineeDOB =dob;
+        this.traineeAge =age;
     }
     public String getName() {
-        return TraineeName;
+        return traineeName;
     }
     public int getAge() {
-        return TraineeAge;
+        return traineeAge;
     }
     public int getId() {
-        return TraineeId;
+        return traineeId;
     }
     public Date getDob() {
-        return TraineeDOB;
+        return traineeDOB;
     }
 
     public void setTraineeId(int traineeId) {
-        TraineeId = traineeId;
+        this.traineeId = traineeId;
     }
 
     public void setTraineeName(String traineeName) {
-        TraineeName = traineeName;
+        this.traineeName = traineeName;
     }
 
     public void setTraineeDOB(Date traineeDOB) {
-        TraineeDOB = traineeDOB;
+        this.traineeDOB = traineeDOB;
     }
 
     public void setTraineeAge(int traineeAge) {
-        TraineeAge = traineeAge;
+        this.traineeAge = traineeAge;
     }
 
     @Override
     public String toString() {
         return "ProminentTrainee{" +
-                "TraineeId=" + TraineeId +
-                ", TraineeName='" + TraineeName + '\'' +
-                ", TraineeDOB=" + TraineeDOB +
-                ", TraineeAge=" + TraineeAge+
+                "TraineeId=" + traineeId +
+                ", TraineeName='" + traineeName + '\'' +
+                ", TraineeDOB=" + traineeDOB +
+                ", TraineeAge=" + traineeAge +
                 '}';
     }
 }
