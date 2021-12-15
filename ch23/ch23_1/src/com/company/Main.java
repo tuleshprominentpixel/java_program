@@ -6,26 +6,31 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.util.List;
 import java.util.*;
-import java.lang.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws Exception {
         // write your code here
-        int numOfWord = 0, numOfNumbers = 0, uniqueWord = 0, uniqueNumber = 0, numOfCharacter = 0, numOfWhitespace = 0, wordLengthLessThanThree = 0;
+        int numOfWord = 0;
+        int numOfNumbers = 0;
+        int uniqueWord = 0;
+        int uniqueNumber = 0;
+        int numOfCharacter = 0;
+        int numOfWhitespace = 0;
+        int wordLengthLessThanThree = 0;
         String oneLineOfFile;
-        String allLineOfFile = "";
+        StringBuilder allLineOfFile = new StringBuilder();
         String file = "/home/pp-2/Desktop/java/file1.txt";
 
         HashMap<String, Integer> uniqueNumberHashmap = new HashMap<>();
         HashMap<String, Integer> uniqueWordHashmap = new HashMap<>();
         HashMap<Integer, Integer> wordLengthCount = new HashMap<>();
-
 
         FileInputStream file1 = new FileInputStream(file);
         InputStreamReader isr1 = new InputStreamReader(file1);
@@ -55,31 +60,31 @@ public class Main {
                 // Extracting words from string
                 Pattern p = Pattern.compile("[a-zA-Z]+");
 
-                allLineOfFile += oneLineOfFile + " \n ";
-                Matcher m = p.matcher(allLineOfFile);
+                allLineOfFile.append(oneLineOfFile).append(" \n ");
+                Matcher m = p.matcher(oneLineOfFile);
 
                 while (m.find()) {
                     String word = m.group();
-                    if (!uniqueWordHashmap.containsKey(word))
+                    if (!uniqueWordHashmap.containsKey(word)) {
                         uniqueWordHashmap.put(word, 1);
-                    else
+                    } else {
                         uniqueWordHashmap.put(word, uniqueWordHashmap.get(word) + 1);
+                    }
                 }
 
                 /*-----------------------------------*/
-
-                for (int i = 0; i < words.length; i++) {
+                for (String word : words) {
                     //Filter words which length is less than 3.
-                    if (words[i].length() < 3) {
+                    if (word.length() < 3) {
                         wordLengthLessThanThree++;
                     }
                     try {
-                        Integer.parseInt(words[i]);
+                        Integer.parseInt(word);
                         numOfNumbers += 1;
 
                     } catch (NumberFormatException e) {
                         //Print word length wise unique count
-                        int wordLength = words[i].length();
+                        int wordLength = word.length();
                         if (!wordLengthCount.containsKey(wordLength)) {
                             wordLengthCount.put(wordLength, 1);
                         } else {
@@ -104,9 +109,7 @@ public class Main {
                 numOfWhitespace += numOfWord - 1;
             }
         }
-        int s = 1;
         for (Map.Entry<String, Integer> entry : uniqueWordHashmap.entrySet()) {
-            logger.info("--------------**** {} {}",entry.getKey(),entry.getValue());
             if (entry.getValue() == 1) {
                 uniqueWord += 1;
             }
@@ -118,18 +121,18 @@ public class Main {
         }
         //Print word length wise unique count
         for (Map.Entry<Integer, Integer> entry : wordLengthCount.entrySet()) {
-            logger.info("length of word = {}  count = {}" , entry.getKey() , entry.getValue());
+            logger.info("length of word = {}  count = {}", entry.getKey(), entry.getValue());
         }
 
 
-        logger.info("Total word count = {}" , numOfWord);
-        logger.info("Total Numbers count = {}" , numOfNumbers);
-        logger.info("uniquqe Numbers count = {}" , uniqueNumber);
-        logger.info("uniquqe Word count = {}" , uniqueWord);
+        logger.info("Total word count = {}", numOfWord);
+        logger.info("Total Numbers count = {}", numOfNumbers);
+        logger.info("uniquqe Numbers count = {}", uniqueNumber);
+        logger.info("uniquqe Word count = {}", uniqueWord);
 
-        logger.info("Total number of characters = {}" , numOfCharacter);
-        logger.info("Total number of whitespaces = {}" , numOfWhitespace);
-        logger.info("wordLengthLessThanThree = {}" , wordLengthLessThanThree);
+        logger.info("Total number of characters = {}", numOfCharacter);
+        logger.info("Total number of whitespaces = {}", numOfWhitespace);
+        logger.info("wordLengthLessThanThree = {}", wordLengthLessThanThree);
 
         logger.info("After sorting ascending order......");
 
@@ -144,59 +147,59 @@ public class Main {
         logger.info("Print top N characters which have more words");
         for (Map.Entry<Character, Integer> en : descendingOrderHashmap.entrySet()) {
             if (en.getValue() > 2)
-                logger.info("Key = {} , Value = {} " , en.getKey() , en.getValue());
+                logger.info("Key = {} , Value = {} ", en.getKey(), en.getValue());
         }
 
-        String reverseWordResult = Arrays.asList(allLineOfFile.split(" "))
-                .stream()
+        String reverseWordResult = Arrays.stream(allLineOfFile.toString().split(" "))
                 .map(oneWord -> new StringBuilder(oneWord).reverse())
                 .collect(Collectors.joining(" "));
 
-        logger.info(reverseWordResult);
-        printCharacterWithFreq(allLineOfFile);
         logger.info("reverseWordResult");
+        logger.info(reverseWordResult);
+        printCharacterWithFreq(allLineOfFile.toString());
+
         String userInput;
         Scanner sc1 = new Scanner(System.in);
         logger.info("Find word : ");
         userInput = sc1.nextLine();
 
-            List<String> wordList = new ArrayList<>();
+        List<String> wordList = new ArrayList<>();
 
-            try (Scanner sc = new Scanner(file)) {
-                while (sc.hasNext()) {
-                    String words = sc.next();
-                    String[] space = words.split(" ");
-                    for (int i = 0; i < space.length; i++) {
-                        if (userInput.equals(space[i])) {
-                            wordList.add(space[i]);
-                        }
-                    }
-                }
-            } catch (Exception e){
-                logger.info("Exception is {}",e.toString());
+        FileInputStream file2 = new FileInputStream(file);
+        InputStreamReader isr2 = new InputStreamReader(file2);
+        try (BufferedReader br2 = new BufferedReader(isr2)) {
+            while ((oneLineOfFile = br2.readLine()) != null) {
+                String[] space = oneLineOfFile.split(" ");
+
+                IntStream.range(0, space.length).filter(i -> userInput.equals(space[i])).mapToObj(i -> space[i]).forEach(wordList::add);
             }
-            logger.info("Words with their frequency..");
-            Set<String> uniqueSet = new HashSet<>(wordList);
-            for (String word : uniqueSet) {
-                logger.info(" count of  word :{} {}",word , Collections.frequency(wordList, word));
-                if (Collections.frequency(wordList, word) > 1) {
-                    logger.info("Word is not unique ");
-                } else {
-                    logger.info("word is unique  ");
-                }
+        } catch (Exception e) {
+            logger.info("Exception is {}", e.toString());
+        }
+        logger.info("Words with their frequency..");
+        HashSet<String> uniqueSet = new HashSet<>(wordList);
+
+
+        for (String word : uniqueSet) {
+            logger.info(" {} count of  word : {}", word, Collections.frequency(wordList, word));
+            if (Collections.frequency(wordList, word) > 1) {
+                logger.info("Word is not unique ");
+            } else {
+                logger.info("word is unique  ");
             }
+        }
 
         /*------------Characters level statistics like total words -*/
         logger.info("charcater count :");
         charCount(userInput);
         logger.info("---------");
-        logger.info("Reverse word : ");
+        /*------------Reverse word------------------*/
         wordsReverse(userInput);
     }
 
-    public static void printHashmap(Map<Character,Integer> hashMap){
-        for (Map.Entry<Character,Integer> en : hashMap.entrySet()) {
-            logger.info("Key = {} , Value = {}" , en.getKey() , en.getValue());
+    public static void printHashmap(Map<Character, Integer> hashMap) {
+        for (Map.Entry<Character, Integer> en : hashMap.entrySet()) {
+            logger.info("Key = {} , Value = {}", en.getKey(), en.getValue());
         }
     }
 
@@ -204,7 +207,7 @@ public class Main {
         // Create a list from elements of HashMap
         List<Map.Entry<Character, Integer>> list = new LinkedList<>(ascendingSortHashmap.entrySet());
 
-        Collections.sort(list, (i1, i2) -> i1.getValue().compareTo(i2.getValue()));
+        list.sort(Map.Entry.comparingByValue());
 
         HashMap<Character, Integer> temp = new LinkedHashMap<>();
         for (Map.Entry<Character, Integer> ascendingSort : list) {
@@ -238,7 +241,7 @@ public class Main {
 
         for (int i = 0; i < userInputString.length(); i++) {
             if (data.get(userInputString.charAt(i)) != 0) {
-                logger.info(" is occur {} {} ",userInputString.charAt(i),data.get(userInputString.charAt(i)));
+                logger.info(" {} is occur  {} ", userInputString.charAt(i), data.get(userInputString.charAt(i)));
                 data.put(userInputString.charAt(i), 0);
             }
         }
@@ -246,17 +249,19 @@ public class Main {
 
     /*-----------------*/
     static void wordsReverse(String str) {
+        StringBuilder reverseWord = new StringBuilder();
         Stack<Character> wordReverseStack = new Stack<>();
 
         for (int i = 0; i < str.length(); ++i) {
-            if ((str.charAt(i) != ' '))
+            if ((str.charAt(i) != ' ')) {
                 wordReverseStack.push(str.charAt(i));
+            }
         }
 
-        while (wordReverseStack.empty() == false) {
-            System.out.print(wordReverseStack.pop());
-
+        while (!wordReverseStack.empty()) {
+            reverseWord.append(wordReverseStack.pop());
         }
+        logger.info("Reverse word : {}", reverseWord);
     }
 
     public static void printCharacterWithFreq(String s) {
@@ -271,8 +276,7 @@ public class Main {
 
         for (int i = 0; i < s.length(); i++) {
             if (charcterFreqHashmap.get(s.charAt(i)) != 0) {
-                System.out.print(s.charAt(i));
-                System.out.print(charcterFreqHashmap.get(s.charAt(i)) + " ");
+                logger.info("character : {} {}", s.charAt(i), charcterFreqHashmap.get(s.charAt(i)));
                 charcterFreqHashmap.put(s.charAt(i), 0);
             }
         }

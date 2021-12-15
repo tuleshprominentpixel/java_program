@@ -1,0 +1,13 @@
+
+[	java:S1122"FDefine and throw a dedicated exception instead of using a generic one.(ï´¹ã
+[	java:S112M"FDefine and throw a dedicated exception instead of using a generic one.(»»Ÿ¼
+8
+java:S2386"Make this member "protected".(·Â…ªûÿÿÿÿ
+u
+java:S1104"_Make tempProminentObject a static final constant or non-public and provide accessors if needed.(ÉÜÍÎ
+j
+java:S1104"OMake map a static final constant or non-public and provide accessors if needed.(·Â…ªûÿÿÿÿ
+O
+java:S1444"9Make this "public static tempProminentObject" field final(ÉÜÍÎ
+D
+java:S1444")Make this "public static map" field final(·Â…ªûÿÿÿÿ

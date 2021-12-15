@@ -5,15 +5,14 @@ import org.json.JSONObject;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.logging.*;
-import org.apache.log4j.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static java.util.Collections.*;
 
 public class Main {
-    private static final  Logger log = LoggerFactory.getLogger(Main.class);
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
     static List<ProminentTrainee> prominentTraineeList = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
@@ -28,6 +27,8 @@ public class Main {
         ProminentTrainee p3 = new ProminentTrainee(3, "Harsh", sdf.parse("17-12-2001"), 22);
         ProminentTrainee p4 = new ProminentTrainee(4, "Abc", sdf.parse("17-02-2004"), 17);
         ProminentTrainee p5 = new ProminentTrainee(5, "XYZ", sdf.parse("17-05-2004"), 17);
+        ProminentTrainee p6 = new ProminentTrainee(6, "ST", sdf.parse("17-05-2002"), 17);
+        ProminentTrainee p7 = new ProminentTrainee(7, "BOB", sdf.parse("17-05-2001"), 17);
 
 
         //Create new arrayList, add custom objects of ProminentTrainee class. Class has getId(), getName(), getAge(), getDob() properties
@@ -35,6 +36,8 @@ public class Main {
         prominentTraineeList.add(p2);
         prominentTraineeList.add(p3);
         prominentTraineeList.add(p4);
+        prominentTraineeList.add(p6);
+        prominentTraineeList.add(p7);
 
         //for loop,
         log.info(newLine);
@@ -47,7 +50,6 @@ public class Main {
         log.info("For each loop ");
         for (ProminentTrainee trainee : prominentTraineeList) {
             log.info(" Trainee id  : " + trainee.getId() + " Trainee name :  " + trainee.getName() + " Trainee age : " + trainee.getDob());
-
         }
 
         log.info(newLine);
@@ -65,6 +67,9 @@ public class Main {
         //Count element of a list using lambda expression
         long count = prominentTraineeList.stream().filter(trainee -> trainee.getAge() != -1).count();
         log.info(("Count element of a list using lambda expression " + count));
+
+
+        log.info("List of trainee whose age is between 20 to 40"+prominentTraineeList.stream().filter(trainee -> trainee.getAge()>20&&trainee.getAge()<40).toList());
 
         log.info(newLine);
         log.info("Insert element into the array list at the second position");
@@ -97,7 +102,7 @@ public class Main {
             log.info(x.getName());
         log.info(newLine);
         log.info("count total element of set");
-        log.info(String.valueOf( prominentTraineeSet.size()));
+        log.info(String.valueOf(prominentTraineeSet.size()));
 
 
         log.info(newLine);
@@ -107,7 +112,7 @@ public class Main {
         log.info("After sorting id");
         prominentTraineeList.sort(Comparator.comparingInt(ProminentTrainee::getId));
         printAllList(prominentTraineeList);
-        log.info("After sorting by age");
+        log.info("After sorting by age*****");
         prominentTraineeList.sort((ProminentTrainee p11, ProminentTrainee p12) -> p11.getAge() - p12.getAge());
 
         printAllList(prominentTraineeList);
@@ -129,7 +134,7 @@ public class Main {
         log.info(newLine);
         printAllList(prominentTraineeList);
 
-        log.info("Compare by AgeComparator with functional  interface");
+        log.info("Compare by AgeComparator with functional  interface______");
         prominentTraineeList.sort(new AgeComparator());
         printAllList(prominentTraineeList);
 
@@ -162,8 +167,7 @@ public class Main {
         List<ProminentTrainee> newProminentTraineeList = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-
-            String line ;
+            String line;
             while ((line = reader.readLine()) != null) {
                 JSONObject json = new JSONObject(line);
 
@@ -177,7 +181,6 @@ public class Main {
                 Date date1 = new SimpleDateFormat("E MMM dd HH:mm:ss Z yy").parse(tempdate);
 
                 ProminentTrainee tempProminentObject = new ProminentTrainee(id, name, (date1), age);
-
                 newProminentTraineeList.add(tempProminentObject);
             }
         } catch (Exception e) {
@@ -192,7 +195,7 @@ public class Main {
 
         try (FileOutputStream binaryFileOutputStream = new FileOutputStream((binaryFileName))) {
 
-            ObjectOutputStream binaryObjectOutputStream ;
+            ObjectOutputStream binaryObjectOutputStream;
             binaryObjectOutputStream = new ObjectOutputStream(binaryFileOutputStream);
 
             // Write objects to file
@@ -231,6 +234,24 @@ public class Main {
         } catch (Exception e) {
             log.info("exception in file read : " + e);
         }
+
+        log.info("Compare by AgeComparator with functional  interface______");
+        prominentTraineeList.sort(new AgeComparator());
+
+
+        printAllList(prominentTraineeList);
+    }
+
+    public static int compare(ProminentTrainee p1, ProminentTrainee p2)
+    {
+        if (p1.getAge() == p2.getAge()) {
+            p1.getName().compareTo(p2.getName());
+            return 0;
+        }
+        else if (p1.getAge() > p2.getAge())
+            return 1;
+        else
+            return -1;
     }
 
     public static void printAllList(List<ProminentTrainee> allTrainee) {

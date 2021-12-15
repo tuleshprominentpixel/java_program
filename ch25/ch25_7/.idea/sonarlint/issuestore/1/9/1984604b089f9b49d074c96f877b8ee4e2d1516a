@@ -1,13 +1,0 @@
-
-n	java:S116"TRename this field "TraineeId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±ÒÍñÿÿÿÿÿ
-p	java:S116"VRename this field "TraineeName" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß‡ñ‘ÿÿÿÿÿ
-j	java:S116"URename this field "TraineeDOB" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹—üû
-j	java:S116"URename this field "TraineeAge" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®’³¹
-m
-java:S1845"PRename field "LOGGER" to prevent any misunderstanding/clash with field "logger".(÷îê8ÿ™îÀÚ/
-b
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(÷îê8„šîÀÚ/
-P
-java:S1128".Remove this unused import 'java.util.logging'.(ÍÌ®˜ÿÿÿÿÿ8å§íÀÚ/
-P
-java:S1128".Remove this unused import 'java.util.logging'.(ÍÌ®˜ÿÿÿÿÿ8áĞîÀÚ/
