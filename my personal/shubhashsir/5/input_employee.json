@@ -1,0 +1,39 @@
+[
+  {
+    "id": "1",
+    "name": "ABC",
+    "birth_date": "17-10-2001",
+    "age": "15",
+    "company_name": "atmiya"
+  },{
+    "id": "2",
+    "name": "XYZ",
+    "birth_date": "18-10-2001",
+    "age": "16",
+    "company_name": "bhalodiya"
+  },{
+    "id": "3",
+    "name": "DFG",
+    "birth_date": "17-11-2001",
+    "age": "10",
+    "company_name": "bhalodiya"
+  },{
+    "id": "4",
+    "name": "STU",
+    "birth_date": "17-9-2001",
+    "age": "25",
+    "company_name": "harivandana"
+  },{
+    "id": "5",
+    "name": "WOW",
+    "birth_date": "17-9-2001",
+    "age": "18",
+    "company_name": "bhalodiya"
+  },{
+    "id": "6",
+    "name": "PQR",
+    "birth_date": "17-1-2001",
+    "age": "21",
+    "company_name": "atmiya"
+  }
+]
