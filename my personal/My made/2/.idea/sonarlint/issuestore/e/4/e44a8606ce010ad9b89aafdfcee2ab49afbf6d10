@@ -1,0 +1,11 @@
+
+E
+java:S1611"/Remove the parentheses around the "i" parameter(³©óü
+J
+java:S1611"/Remove the parentheses around the "n" parameter(Ë¿Áüÿÿÿÿ
+b
+java:S1612"@Replace this lambda with method reference 'System.out::println'.(“÷íçıÿÿÿÿ8á—¶•Ü/
+o
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(¤®Ó§8‹›µ•Ü/
+Q
+java:S1128"4Remove this unused import 'java.util.stream.Stream'.(ó÷”8ĞÈ·•Ü/

@@ -1,0 +1,10 @@
+
+F
+java:S2201
+"+The return value of "collect" must be used.(ğÛóÔøÿÿÿÿ
+E
+java:S1611	"/Remove the parentheses around the "i" parameter(ÀÀ¼Û
+J
+java:S1611"/Remove the parentheses around the "i" parameter(ÌŞ›ûÿÿÿÿ
+M
+java:S3958"2Refactor the code so this stream pipeline is used.(ëÎ¿¦úÿÿÿÿ

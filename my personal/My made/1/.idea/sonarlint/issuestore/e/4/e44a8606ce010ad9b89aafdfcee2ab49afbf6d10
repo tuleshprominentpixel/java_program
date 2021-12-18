@@ -1,0 +1,7 @@
+
+h
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(†”´—
+V
+java:S1612"@Replace this lambda with method reference 'String::toUpperCase'.(†”´—
+7
+java:S3864"!Remove this use of "Stream.peek".(²þ£®
