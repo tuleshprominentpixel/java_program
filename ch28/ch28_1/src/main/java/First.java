@@ -19,7 +19,9 @@ public class First {
     public static void main(String[] args) throws Exception {
         Connection connect = getConnet();
         System.out.println("   Print all the records which are from  not from Ahmedabad");
-        selectTraineeDateDescending(connect);
+        UpdateRecords.UpdateWhichJoinBefore6To12MonthBefore();
+//        UpdateRecords.UpdateRecordsWithDOB();
+//        selectTraineeDateDescending(connect);
 //        selectCityNotAhmedabad(connect);
         selectCityRajkot(connect);
         selectDataBetween20To21(connect);
@@ -146,11 +148,13 @@ public class First {
                 st = connect.prepareStatement("select * from trainee ORDER BY trainee_dob");
                 ResultSet rs = st.executeQuery();
                 while (rs.next()) {
-                    String traineeId = rs.getString("trainee_id");//trainee_id
+                    String traineeId = rs.getString("trainee_id");
                     String traineeName = rs.getString("trainee_name");
-                    String traineeAddress = rs.getString("trainee_address");//trainee_address
-                    String traineeAge = rs.getString("trainee_age");//traineeAge
-                    System.out.println("trainee id : " + traineeId + " trainee name : " + traineeName + " address :" + traineeAddress + " Age : " + traineeAge);
+                    String traineeAddress = rs.getString("trainee_address");
+                    String traineeAge = rs.getString("trainee_age");
+                    Date traineeBirthDate = rs.getDate("trainee_dob");
+                    Date traineeJoinDate = rs.getDate("trainee_joining_date");
+                    System.out.println("trainee id : " + traineeId + " trainee name : " + traineeName +" trainee Join date :"+traineeJoinDate+" trainee date : "+traineeBirthDate+ " address :" + traineeAddress + " Age : " + traineeAge);
                 }
             } catch (Exception e) {
                 System.out.println("exception in select : " + e);
@@ -169,7 +173,8 @@ public class First {
                     String traineeName = rs.getString("trainee_name");
                     String traineeAddress = rs.getString("trainee_address");
                     String traineeAge = rs.getString("trainee_age");
-                    System.out.println("trainee id : " + traineeId + " trainee name : " + traineeName + " address :" + traineeAddress + " Age : " + traineeAge);
+                    Date traineeBirthDate = rs.getDate("trainee_dob");
+                    System.out.println("trainee id : " + traineeId + " trainee name : " + traineeName +" birth date : "+traineeBirthDate +" address :" + traineeAddress + " Age : " + traineeAge);
                 }
             } catch (Exception e) {
                 System.out.println("exception in select : " + e);
