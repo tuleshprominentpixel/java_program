@@ -1,0 +1,29 @@
+
+U
+java:S1118":Add a private constructor to hide the implicit public one.(ûº®òüÿÿÿÿ
+c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ä“ôİ
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦ÿÂÖûÿÿÿÿ
+o	java:S1000"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ›”™şÿÿÿÿ8Øé©¼İ/
+J
+java:S1128"4Remove this unused import 'preparedstatement.First'.(şÒì­
+p
+java:S1192"TDefine a constant instead of duplicating this literal " RETURNS refcursor " 3 times.(ıĞßz8Ôª¼İ/
+j
+java:S1192"HDefine a constant instead of duplicating this literal " AS $$ " 3 times.(³³Úûüÿÿÿÿ8Ôª¼İ/
+w
+java:S1192"ZDefine a constant instead of duplicating this literal "{call getUpdatetrainee()}" 3 times.(ŞÌ–8‘Ôª¼İ/
+j
+java:S1192"HDefine a constant instead of duplicating this literal " BEGIN " 3 times.(†¿Î¬ùÿÿÿÿ8‘Ôª¼İ/
+¦
+java:S1192
+"ƒDefine a constant instead of duplicating this literal "CREATE OR REPLACE FUNCTION getUpdatetrainee(mycurs OUT refcursor) " 3 times.(³Ÿ·öûÿÿÿÿ8‘Ôª¼İ/
+d
+java:S1192"GDefine a constant instead of duplicating this literal " END; " 3 times.(Ü÷¸â8‘Ôª¼İ/
+t
+java:S1192"RDefine a constant instead of duplicating this literal " LANGUAGE plpgsql" 3 times.(ğºªµûÿÿÿÿ8‘Ôª¼İ/
+b
+java:S1223"LRename this method to prevent any misunderstanding or make it a constructor.(ä“ôİ
+j
+java:S2095F"OUse try-with-resources or close this "CallableStatement" in a "finally" clause.(”ÈĞûÿÿÿÿ
+b
+java:S2095E"GUse try-with-resources or close this "Statement" in a "finally" clause.(Û‹áàüÿÿÿÿ

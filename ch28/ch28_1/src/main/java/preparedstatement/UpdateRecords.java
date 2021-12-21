@@ -10,7 +10,7 @@ public class UpdateRecords {
         if (connect != null) {
             PreparedStatement st = null;
             try {
-                st = connect.prepareStatement("UPDATE trainee set trainee_name='Tulesh' where trainee_id=1");
+                st = connect.prepareStatement("UPDATE trainee set trainee_name='Tulesh' where trainee_id=51");
                 st.executeQuery();
             } catch (Exception e) {
                 System.out.println("exception : " + e);

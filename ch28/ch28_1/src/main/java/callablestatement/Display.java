@@ -15,7 +15,7 @@ public class Display {
 
         String runFunction = "{? = call getUsers()}";
         try {
-            printRecord(connect,runFunction,createFunction);
+            printRecord(connect, runFunction, createFunction);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -32,8 +32,8 @@ public class Display {
                 + " LANGUAGE plpgsql";
 
         String runFunction = "{? = call getUsers()}";
-        try  {
-            printRecord(connect,runFunction,createFunction);
+        try {
+            printRecord(connect, runFunction, createFunction);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class Display {
 
         String runFunction = "{? = call getUsers()}";
         try {
-            printRecord(connect,runFunction,createFunction);
+            printRecord(connect, runFunction, createFunction);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,7 +69,7 @@ public class Display {
 
         String runFunction = "{? = call getUsers()}";
         try {
-            printRecord(connect,runFunction,createFunction);
+            printRecord(connect, runFunction, createFunction);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,13 +87,13 @@ public class Display {
 
         String runFunction = "{? = call getUsers()}";
         try {
-            printRecord(connect,runFunction,createFunction);
+            printRecord(connect, runFunction, createFunction);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void printRecord(Connection connect,String runFunction,String createFunction) throws SQLException {
+    public static void printRecord(Connection connect, String runFunction, String createFunction) throws SQLException {
         Statement statement = connect.createStatement();
         java.sql.CallableStatement cs = connect.prepareCall(runFunction);
         connect.setAutoCommit(false);
@@ -103,8 +103,8 @@ public class Display {
 
         ResultSet resultSet = (ResultSet) cs.getObject(1);
         while (resultSet.next()) {
-            System.out.print(" Name : "+resultSet.getString("trainee_name")+" , Birth date : "+resultSet.getString("trainee_dob"));
-            System.out.println(" , Address : "+resultSet.getString("trainee_address"));
+            System.out.print(" Name : " + resultSet.getString("trainee_name") + " , Birth date : " + resultSet.getString("trainee_dob"));
+            System.out.println(" , Address : " + resultSet.getString("trainee_address"));
         }
     }
 }

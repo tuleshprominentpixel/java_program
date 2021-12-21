@@ -1,0 +1,7 @@
+
+W
+java:S1118":Add a private constructor to hide the implicit public one.(ØÉ™Ï8ã¥Õºİ/
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷êÒÙ8ä¥Õºİ/
+]	java:S125"<This block of commented-out lines of code should be removed.(ãİ·±ûÿÿÿÿ8ç¥Õºİ/
+q
+java:S2095"OUse try-with-resources or close this "CallableStatement" in a "finally" clause.(ì‡ø‚ûÿÿÿÿ8î¥Õºİ/

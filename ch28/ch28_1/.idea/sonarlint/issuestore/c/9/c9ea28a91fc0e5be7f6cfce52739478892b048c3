@@ -1,0 +1,22 @@
+
+P
+java:S1118":Add a private constructor to hide the implicit public one.(»¬Ç»
+c
+java:S1192	"HDefine a constant instead of duplicating this literal " AS $$ " 5 times.(³³Úûüÿÿÿÿ
+c
+java:S1192
+"HDefine a constant instead of duplicating this literal " BEGIN " 5 times.(†¿Î¬ùÿÿÿÿ
+]
+java:S1192"GDefine a constant instead of duplicating this literal " END; " 5 times.(Ü÷¸â
+i
+java:S1192"TDefine a constant instead of duplicating this literal " RETURNS refcursor " 5 times.(ýÐßz
+–
+java:S1192"{Define a constant instead of duplicating this literal "CREATE OR REPLACE FUNCTION getUsers(mycurs OUT refcursor) " 5 times.(¬â¡ôþÿÿÿÿ
+l
+java:S1192"VDefine a constant instead of duplicating this literal "{? = call getUsers()}" 5 times.(øÓÝÙ
+m
+java:S1192"RDefine a constant instead of duplicating this literal " LANGUAGE plpgsql" 5 times.(ðºªµûÿÿÿÿ
+q
+java:S2095b"OUse try-with-resources or close this "CallableStatement" in a "finally" clause.(”žÈÐûÿÿÿÿ8ð àºÝ/
+i
+java:S2095a"GUse try-with-resources or close this "Statement" in a "finally" clause.(Û‹áàüÿÿÿÿ8ï àºÝ/

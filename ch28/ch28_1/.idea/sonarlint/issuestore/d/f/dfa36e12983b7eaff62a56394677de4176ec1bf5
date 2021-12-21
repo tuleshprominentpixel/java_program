@@ -1,0 +1,14 @@
+
+a	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(Ý¶à"8ñˆ”¼Ý/
+L
+java:S3740)"/Provide the parametrized type for this generic.(ÊûäÍ8òˆ”¼Ý/
+W
+java:S1118	":Add a private constructor to hide the implicit public one.(µÇùÄ8ôˆ”¼Ý/
+D
+java:S1481"'Remove this unused "st" local variable.(Œ×Õ³8øˆ”¼Ý/
+D
+java:S1481."'Remove this unused "st" local variable.(Œ×Õ³8‚‰”¼Ý/
+q
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Þ¹¦Åþÿÿÿÿ8«‰”¼Ý/
+l
+java:S20953"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Û«žÓ8¬‰”¼Ý/

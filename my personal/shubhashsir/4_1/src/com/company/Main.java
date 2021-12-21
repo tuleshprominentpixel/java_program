@@ -12,19 +12,20 @@ public class Main {
     //o Write logic which throws concurrent modification exception
     //o Change logic of above to solve concurrent modification exception
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) throws Exception {
-	// write your code here
-        ArrayList<Integer>  numbers=new ArrayList<>();
+        // write your code here
+        ArrayList<Integer> numbers = new ArrayList<>();
         numbers.add(1);
         numbers.add(2);
         numbers.add(3);
         numbers.add(4);
 
-        Iterator<Integer> iter= numbers.iterator();
+        Iterator<Integer> iter = numbers.iterator();
         try {
             while (iter.hasNext()) {
                 Integer value = iter.next();
-                logger.info( "{} , ",value);
+                logger.info("{} , ", value);
 
                 // ConcurrentModificationException is raised here as an element
                 // is added during the iteration
@@ -35,24 +36,22 @@ public class Main {
                     numbers.remove(3);
                 }
             }
-        }
-        catch (ConcurrentModificationException e){
-            logger.info("Exception : {} ",e.toString());
+        } catch (ConcurrentModificationException e) {
+            logger.info("Exception : {} ", e.toString());
         }
         try {
             while (iter.hasNext()) {
                 Integer value = iter.next();
-                logger.info("{}  ",value);
+                logger.info("{}  ", value);
 
                 // ConcurrentModificationException is raised here as an element
                 // is added during the iteration
 
             }
             numbers.add(5);
-            logger.info(" Arraylist numbers : {}",numbers);
-        }
-        catch (ConcurrentModificationException e){
-            logger.info("Exception : {}",e.toString());
+            logger.info(" Arraylist numbers : {}", numbers);
+        } catch (ConcurrentModificationException e) {
+            logger.info("Exception : {}", e.toString());
         }
     }
 }
