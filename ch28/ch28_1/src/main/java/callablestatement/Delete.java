@@ -4,9 +4,8 @@ import java.sql.*;
 import java.sql.CallableStatement;
 
 public class Delete {
-    public static void DeleteRecords(Connection connect){
+    public static void DeleteRecords(Connection connect) {
         /*CREATE OR REPLACE PROCEDURE DeleteTrainee(ID INT)
-
         LANGUAGE plpgsql AS
 
          BEGIN
@@ -17,7 +16,7 @@ public class Delete {
 
         try {
             CallableStatement stmt = connect.prepareCall(sql);
-            stmt.setInt(1,59);
+            stmt.setInt(1, 59);
             stmt.executeUpdate();
             System.out.println(" successfully deleted ");
 

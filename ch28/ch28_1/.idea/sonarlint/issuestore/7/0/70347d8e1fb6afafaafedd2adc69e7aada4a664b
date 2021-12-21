@@ -1,0 +1,7 @@
+
+O
+java:S4925"-Remove this "Class.forName()", it is useless.(õ†¨Äùÿÿÿÿ8ø¹ª»Ý/
+Ž
+java:S1130"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ÙØ¤Þýÿÿÿÿ8Êˆý¾Ý/
+X	java:S125"<This block of commented-out lines of code should be removed.(µîæÜ8þ¹ª»Ý/
+X	java:S125"<This block of commented-out lines of code should be removed.(±öòª8Š¿«»Ý/

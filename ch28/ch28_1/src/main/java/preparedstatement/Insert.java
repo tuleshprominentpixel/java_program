@@ -41,7 +41,7 @@ public class Insert {
             List list = new ArrayList<>();
             list.add(new Trainee("shhn", "y1", dateFormat.parse("17-10-2001"), dateFormat.parse("17-10-2021"), 21));
             list.add(new Trainee("x2", "y2", dateFormat.parse("18-10-2001"), dateFormat.parse("15-01-2021"), 22));
-            list.add(new Trainee("x3", "y3", dateFormat.parse("19-10-2001"), dateFormat.parse("14-06-2021"), 23));
+            list.add(new Trainee("x3", "y3", dateFormat.parse("01-01-1995"), dateFormat.parse("14-06-2021"), 23));
             list.add(new Trainee("x4", "y4", dateFormat.parse("10-10-2001"), dateFormat.parse("19-10-2021"), 19));
             Statement st = null;
             final String sql = "insert into trainee (trainee_name,trainee_address,trainee_dob,trainee_joining_date,trainee_age) VALUES (?,?,?,?,?)";

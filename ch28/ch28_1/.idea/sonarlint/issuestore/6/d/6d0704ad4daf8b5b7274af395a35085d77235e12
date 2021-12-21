@@ -1,0 +1,43 @@
+
+W
+java:S1118	":Add a private constructor to hide the implicit public one.(»¬Ç»8ß¨Ú¼İ/
+Y
+java:S1854]"7Remove this useless assignment to local variable "sql".(¹ËŠ¨ÿÿÿÿÿ8ğ¨Ú¼İ/
+J
+java:S1481]"(Remove this unused "sql" local variable.(¹ËŠ¨ÿÿÿÿÿ8ñ¨Ú¼İ/
+Y
+java:S1854u"7Remove this useless assignment to local variable "sql".(¹ËŠ¨ÿÿÿÿÿ8ö¨Ú¼İ/
+J
+java:S1481u"(Remove this unused "sql" local variable.(¹ËŠ¨ÿÿÿÿÿ8ö¨Ú¼İ/
+m
+java:S1192"KDefine a constant instead of duplicating this literal " address :" 4 times.(ñìóàúÿÿÿÿ8ø¨Ú¼İ/
+m
+java:S1192"KDefine a constant instead of duplicating this literal "trainee_id" 4 times.(•±´üÿÿÿÿ8ø¨Ú¼İ/
+n
+java:S1192"LDefine a constant instead of duplicating this literal "trainee_age" 4 times.(ĞŒãúÿÿÿÿ8ø¨Ú¼İ/
+l
+java:S1192"PDefine a constant instead of duplicating this literal "trainee_address" 6 times.(ñâ38ø¨Ú¼İ/
+j
+java:S1192"HDefine a constant instead of duplicating this literal " Age : " 4 times.(ñìóàúÿÿÿÿ8ù¨Ú¼İ/
+s
+java:S1192"QDefine a constant instead of duplicating this literal " trainee name : " 4 times.(ñìóàúÿÿÿÿ8ù¨Ú¼İ/
+x
+java:S1192]"VDefine a constant instead of duplicating this literal "select * from trainee" 3 times.(¹ËŠ¨ÿÿÿÿÿ8ù¨Ú¼İ/
+p
+java:S1192"NDefine a constant instead of duplicating this literal "trainee id : " 4 times.(ñìóàúÿÿÿÿ8ù¨Ú¼İ/
+j
+java:S1192"MDefine a constant instead of duplicating this literal "trainee_name" 6 times.(±„’×8ù¨Ú¼İ/
+t
+java:S1192"WDefine a constant instead of duplicating this literal "exception in select : " 4 times.(½¯¹ô8ù¨Ú¼İ/
+l
+java:S2095#"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÒÖ”ê8­©Ú¼İ/
+q
+java:S2095J"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÂÄøˆüÿÿÿÿ8­©Ú¼İ/
+q
+java:S2095w"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œäĞ‚øÿÿÿÿ8­©Ú¼İ/
+l
+java:S2095_"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¶¯âú8­©Ú¼İ/
+q
+java:S20957"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(„á¡¬ûÿÿÿÿ8®©Ú¼İ/
+q
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÑÆ¯üÿÿÿÿ8®©Ú¼İ/

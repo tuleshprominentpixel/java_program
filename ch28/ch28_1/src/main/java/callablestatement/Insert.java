@@ -10,17 +10,31 @@ import java.util.*;
 //import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-
 public class Insert {
     public static void multiRecord(Connection connect) throws Exception {
+        /*
+        CREATE OR REPLACE PROCEDURE insert_trainee
+        (in_name varchar(256),
+        in_addres varchar(256),
+        in_dob date,
+        in_join_date date,
+        in_age int)
+        language plpgsql
+        as $$
+        BEGIN
+        INSERT INTO trainee (trainee_name, trainee_address, trainee_age,trainee_dob,trainee_joining_date)
+        values (in_name,in_addres,in_age,in_dob,in_join_date);
+        commit;
+        end $$
+         */
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Connection con = null;
-        CallableStatement   stmt = null;
+        CallableStatement stmt = null;
         if (connect != null) {
             List list = new ArrayList<>();
             list.add(new Trainee("shhn", "y1", dateFormat.parse("17-10-2001"), dateFormat.parse("17-10-2021"), 21));
             list.add(new Trainee("x2", "y2", dateFormat.parse("18-10-2001"), dateFormat.parse("15-01-2021"), 22));
-            list.add(new Trainee("x3", "y3", dateFormat.parse("19-10-2001"), dateFormat.parse("14-06-2021"), 23));
+            list.add(new Trainee("x3", "y3", dateFormat.parse("01-01-1995"), dateFormat.parse("14-06-2021"), 23));
             list.add(new Trainee("x4", "y4", dateFormat.parse("10-10-2001"), dateFormat.parse("19-10-2021"), 19));
             Statement st = null;
 
@@ -34,38 +48,38 @@ public class Insert {
                 stmt.setDate(4, new java.sql.Date((trainee.getTraineeJoinDate()).getTime()));
                 stmt.setInt(5, trainee.getTraineeAge());
                 System.out.println("trainee.getTraineeAddress() " + trainee.getTraineeAddress());
-//                stmt.addBatch();
                 stmt.executeUpdate();
             }
         }
     }
+
     public static void insertSingleRecord(Connection connect) throws Exception {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         /*
         CREATE OR REPLACE PROCEDURE insert_trainee
-(in_id IN trainee.trainee_id %TYPE,
- in_name IN trainee.trainee_name %TYPE,
- in_addres IN trainee.trainee_address %TYPE,
- in_dob IN trainee.trainee_dob %TYPE,
- in_join_date IN trainee.trainee_joining_date %type,
- in_age IN trainee.trainee_age %type,
- out_result OUT VARCHAR2)
-as
-BEGIN
-  INSERT INTO trainee (trainee_id, trainee_name, trainee_address, trainee_dob, trainee_joining_date,trainee_age)
-  values (in_id,in_name,in_addres,in_dob,in_join_date,in_age);
-  commit;
+        (in_id IN trainee.trainee_id %TYPE,
+         in_name IN trainee.trainee_name %TYPE,
+         in_addres IN trainee.trainee_address %TYPE,
+         in_dob IN trainee.trainee_dob %TYPE,
+         in_join_date IN trainee.trainee_joining_date %type,
+         in_age IN trainee.trainee_age %type,
+         out_result OUT VARCHAR2)
+        as
+        BEGIN
+          INSERT INTO trainee (trainee_id, trainee_name, trainee_address, trainee_dob, trainee_joining_date,trainee_age)
+          values (in_id,in_name,in_addres,in_dob,in_join_date,in_age);
+          commit;
 
---  out_result := 'TRUE';
+        --  out_result := 'TRUE';
 
-EXCEPTION
-  WHEN OTHERS THEN
---  out_result := 'FALSE';
-  ROLLBACK;
-END;
+        EXCEPTION
+          WHEN OTHERS THEN
+        --  out_result := 'FALSE';
+          ROLLBACK;
+        END;
          */
         Connection con = null;
-        CallableStatement   stmt = null;
+        CallableStatement stmt = null;
 
         //Read User Inputs
         Scanner input = new Scanner(System.in);
@@ -80,9 +94,9 @@ END;
         System.out.println("Enter trainee age:");
         int age = input.nextInt();
 
-        Date birthDate=dateFormat.parse(dob);
-        Date joinDates=dateFormat.parse(joinDate);
-        try{
+        Date birthDate = dateFormat.parse(dob);
+        Date joinDates = dateFormat.parse(joinDate);
+        try {
             stmt = (CallableStatement) connect.prepareCall("CALL insert_trainee(?,?,?,?,?)");
             stmt.setString(1, name);
             stmt.setString(2, address);
@@ -94,56 +108,14 @@ END;
 //            stmt.registerOutParameter(6, java.sql.Types.VARCHAR);
 
             stmt.executeUpdate();
-
             //read the OUT parameter now
 //            String result = stmt.getString(6);
 
             System.out.println("Employee Record Save Success::");
 //            System.out.println("Employee Record Save Success::"+result);
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        /*if (connect != null) {
-            List list = new ArrayList<>();
-            list.add(new Trainee("shhn", "y1", dateFormat.parse("17-10-2001"), dateFormat.parse("17-10-2021"), 21));
-            list.add(new Trainee("x2", "y2", dateFormat.parse("18-10-2001"), dateFormat.parse("15-01-2021"), 22));
-            list.add(new Trainee("x3", "y3", dateFormat.parse("19-10-2001"), dateFormat.parse("14-06-2021"), 23));
-            list.add(new Trainee("x4", "y4", dateFormat.parse("10-10-2001"), dateFormat.parse("19-10-2021"), 19));
-            Statement st = null;
 
-            String createFunction = "CREATE OR REPLACE FUNCTION getUsers1(mycurs OUT refcursor) "
-                    + " RETURNS refcursor "
-                    + " AS $$ "
-                    + " BEGIN "
-                    + "     OPEN mycurs FOR insert into trainee (trainee_name,trainee_address,trainee_dob,trainee_joining_date,trainee_age) VALUES (?,?,?,?,?); "
-                    + " END; "
-                    + " $$ "
-                    + " LANGUAGE plpgsql";
-
-            String runFunction = "{? = call getUsers1()}";
-            final String sql = "insert into trainee (trainee_name,trainee_address,trainee_dob,trainee_joining_date,trainee_age) VALUES (?,?,?,?,?)";
-
-            try {
-                connect.setAutoCommit(false);
-                CallableStatement myStatement = (CallableStatement) connect.prepareCall(runFunction);
-
-                for (Iterator<Trainee> iterator = list.iterator(); iterator.hasNext(); ) {
-                    Trainee trainee = iterator.next();
-//                    myStatement.setString(1, trainee.getTraineeName());
-//                    myStatement.setString(2, trainee.getTraineeAddress());
-//                    myStatement.setDate(3, new java.sql.Date((trainee.getTraineeDOB()).getTime()));
-//                    myStatement.setDate(4, new java.sql.Date((trainee.getTraineeJoinDate()).getTime()));
-//                    myStatement.setInt(5, trainee.getTraineeAge());
-                    System.out.println("trainee.getTraineeAddress() " + trainee.getTraineeAddress()+" ");
-//                    myStatement.addBatch();
-                }
-//                int[] updateCounts = myStatement.executeBatch();
-//                System.out.println("array " + Arrays.toString(updateCounts));
-                connect.commit();
-                connect.setAutoCommit(true);
-            } catch (Exception e) {
-                System.out.println("exception in multi insert : " + e.toString());
-            }
-        }*/
     }
 }
