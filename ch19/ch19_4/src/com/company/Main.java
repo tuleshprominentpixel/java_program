@@ -18,16 +18,6 @@ public class Main {
 
             printNumberOfLine(arr, 0);
         }
-        /*try {
-
-            Path file = Paths.get("/home/pp-2/Desktop/java");
-
-      long count = Files.lines(file).count();
-      System.out.println("Total Lines: " + count);
-
-    } catch (Exception e) {
-      e.getStackTrace();
-    }*/
 
     }
     static void printNumberOfLine(File[] arr, int level)

@@ -15,7 +15,7 @@ public class Ch19_5 {
         });
         callables.add(new Callable<String>() {
             public String call() throws Exception {
-                return "Second";
+                return "executorservice.Second";
             }
         });
         callables.add(new Callable<String>() {
@@ -24,9 +24,9 @@ public class Ch19_5 {
             }
         });
 
-        java.util.List<Future<String>> futures = executorService.invokeAll(callables);
+        java.util.List<Future<String>> futureList = executorService.invokeAll(callables);
 
-        for(Future<String> future : futures){
+        for(Future<String> future : futureList){
             System.out.println("future.get = " + future.get());
         }
 
