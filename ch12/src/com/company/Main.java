@@ -38,10 +38,10 @@ public class Main {
         m1.specialization="Full satck developer";
         m1.department="Developement and manager";
         System.out.println("Employee name : "+e1.name+
-        "\nAddress"+e1.Address+"\nAge"+e1.age+"PhoneNumber : "+e1.PhoneNumber+" Salary : "+e1.salary+
+        "\nAddress "+e1.Address+"\nAge "+e1.age+" PhoneNumber : "+e1.PhoneNumber+" Salary : "+e1.salary+
                 "\nspecialization : "+e1.specialization+"\n department : "+e1.department);
-        System.out.println("Employee name : "+m1.name+
-                "\nAddress"+m1.Address+"\nAge"+m1.age+"PhoneNumber : "+m1.PhoneNumber+" Salary : "+m1.salary+
+        System.out.println("Manager name : "+m1.name+
+                "\nAddress "+m1.Address+"\nAge "+m1.age+" PhoneNumber : "+m1.PhoneNumber+" Salary : "+m1.salary+
                 "\nspecialization : "+m1.specialization+"\n department : "+m1.department);
 
 

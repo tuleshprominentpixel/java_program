@@ -53,7 +53,6 @@ public class Main {
         if(num1>size){
             throw new arrayException();
         }
-
     }
 
 }
