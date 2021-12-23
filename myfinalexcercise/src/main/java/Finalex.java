@@ -65,6 +65,7 @@ public class Finalex {
         ArrayList<String> keys = new ArrayList<String>(originalPrice.keySet());
         for (int i = keys.size() - 1; i >= 0; i--) {
 //            System.out.println(money);
+            
             if (money >= originalPrice.get(keys.get(i))) {
                 notes = Math.floor(money / originalPrice.get(keys.get(i)));
 //                System.out.println(money / originalPrice.get(keys.get(i)) + " , orriginal : "+originalPrice.get(keys.get(i))+" , money : "+money);
